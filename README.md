@@ -1,6 +1,6 @@
 # webpack-joi-schema
 [![travis build](https://img.shields.io/travis/jonathanewerner/webpack-joi-schema.svg?style=flat-square)](https://travis-ci.org/jonathanewerner/webpack-joi-schema)
-[![codecov.io](https://codecov.io/github/jonathanewerner/webpack-joi-schema/coverage.svg?branch=master)](https://codecov.io/github/jonathanewerner/webpack-joi-schema?branch=master)
+[![codecov.io](https://img.shields.io/codecov/c/github/jonathanewerner/webpack-joi-schema.svg?style=flat-square))](https://codecov.io/github/jonathanewerner/webpack-joi-schema?branch=master)
 
 Writing webpack configs is a brittle and error-prone. This package provides a [joi](https://github.com/hapijs/joi) object schema for webpack configs. This gets you a) static type safety and b) "semantic" validations such as "`module.loaders.loader` and `module.loaders.loaders` can not be used simultaneously" or "`module.loaders.query` can only be used with `module.loaders.loader`, not with `module.loaders.loaders`".
 
