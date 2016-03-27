@@ -1,5 +1,15 @@
 # webpack-joi-schema
+Writing webpack configs is a brittle and error-prone. [joi](https://github.com/hapijs/joi) is a brilliant schema validation library. With the joi schema definition that this package provides, you get a) static type safety and b) "semantic" validations such as "`module.loaders.loader` and `module.loaders.loaders` can not be used simultaneously" or "`module.loaders.query` can only be used with `module.loaders.loader`, not with `module.loaders.loaders`".
 
-### WIP
+**Note*: This is a work in progress. If you like it, you're welcome to give feedback & PR's.
 
-Validates your webpack config with [joi](https://github.com/hapijs/joi).
+### Usage
+In your `webpack.config.js`:
+```js
+const validate = require('webpack-joi-schema')
+
+const config = { /* ... your webpack config */ }
+validate(config) // Will throw errors when config is not valid
+
+module.exports = config
+```
