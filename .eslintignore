@@ -1,0 +1,5 @@
+node_modules/
+dist/
+test/passing-configs
+coverage/
+.nyc_output/
