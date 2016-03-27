@@ -26,6 +26,11 @@ const loaderSchema = Joi.object({
   .xor('loaders', 'loader')
   .nand('loaders', 'query').options({ language: { object: { nand: LOADERS_QUERY_MESSAGE } } })
 
+const loadersSchema = Joi.array().items(loaderSchema)
+
 export default Joi.object({
-  loaders: Joi.array().items(loaderSchema),
+  loaders: loadersSchema.required(),
+  preLoaders: loadersSchema,
+  postLoaders: loadersSchema,
+  noParse: Joi.boolean(),
 })
