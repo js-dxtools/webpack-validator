@@ -1,4 +1,10 @@
 # webpack-joi-schema
+[![travis build](https://img.shields.io/travis/jonathanewerner/webpack-joi-schema.svg?style=flat-square)](https://travis-ci.org/jonathanewerner/webpack-joi-schema)
+<!--- [![version](https://img.shields.io/npm/v/webpack-joi-schema.svg?style=flat-square)](http://npm.im/webpack-joi-schema) --->
+<!--- [![downloads](https://img.shields.io/npm/dm/webpack-joi-schema.svg?style=flat-square)](http://npm-stat.com/charts.html?package=webpack-joi-schema&from=2015-08-01) --->
+[![codecov.io](https://codecov.io/github/jonathanewerner/webpack-joi-schema/coverage.svg?branch=master)](https://codecov.io/github/jonathanewerner/webpack-joi-schema?branch=master)
+[![MIT License](https://img.shields.io/npm/l/webpack-joi-schema.svg?style=flat-square)](http://opensource.org/licenses/MIT)
+
 Writing webpack configs is a brittle and error-prone. [joi](https://github.com/hapijs/joi) is a brilliant schema validation library. With the joi schema definition that this package provides, you get a) static type safety and b) "semantic" validations such as "`module.loaders.loader` and `module.loaders.loaders` can not be used simultaneously" or "`module.loaders.query` can only be used with `module.loaders.loader`, not with `module.loaders.loaders`".
 
 **Note**: This is a work in progress. If you like it, you're welcome to give feedback & PR's.
@@ -13,3 +19,6 @@ validate(config) // Will throw errors when config is not valid
 
 module.exports = config
 ```
+
+#### License
+MIT
