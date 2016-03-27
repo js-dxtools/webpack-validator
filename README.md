@@ -1,7 +1,5 @@
 # webpack-joi-schema
 [![travis build](https://img.shields.io/travis/jonathanewerner/webpack-joi-schema.svg?style=flat-square)](https://travis-ci.org/jonathanewerner/webpack-joi-schema)
-<!--- [![version](https://img.shields.io/npm/v/webpack-joi-schema.svg?style=flat-square)](http://npm.im/webpack-joi-schema) --->
-<!--- [![downloads](https://img.shields.io/npm/dm/webpack-joi-schema.svg?style=flat-square)](http://npm-stat.com/charts.html?package=webpack-joi-schema&from=2015-08-01) --->
 [![codecov.io](https://codecov.io/github/jonathanewerner/webpack-joi-schema/coverage.svg?branch=master)](https://codecov.io/github/jonathanewerner/webpack-joi-schema?branch=master)
 [![MIT License](https://img.shields.io/npm/l/webpack-joi-schema.svg?style=flat-square)](http://opensource.org/licenses/MIT)
 
