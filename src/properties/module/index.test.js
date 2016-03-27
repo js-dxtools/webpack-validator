@@ -79,7 +79,7 @@ const invalidModuleConfigs = [
     input: {
       loaders: [{ query: { foo: 'bar' }, loaders: ['file-loader'], test: /foo/ }],
     },
-    // One 1-arity functions are allowed
+    // query can only be supplied when `loader` property is supplied
     error: { message: `"value" ${LOADERS_QUERY_MESSAGE}` },
   },
 ]
