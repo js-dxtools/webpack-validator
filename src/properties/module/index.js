@@ -32,5 +32,5 @@ export default Joi.object({
   loaders: loadersSchema.required(),
   preLoaders: loadersSchema,
   postLoaders: loadersSchema,
-  noParse: Joi.boolean(),
+  noParse: Joi.array(Joi.object().type(RegExp)).single(),
 })

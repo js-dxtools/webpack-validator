@@ -1,5 +1,4 @@
 import validate from '../../src/index'
-import Joi from 'joi'
 
 export default (configs, schema) => {
   configs.forEach(({ input: invalidConfig, error: expectedError }, n) => {
