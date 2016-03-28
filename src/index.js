@@ -1,7 +1,7 @@
 import Joi from 'joi'
 import moduleSchema from './properties/module'
 
-export const schema = Joi.object({
+const schema = Joi.object({
   amd: Joi.any(),
   bail: Joi.any(),
   cache: Joi.any(),
@@ -32,6 +32,9 @@ export const schema = Joi.object({
   metadata: Joi.any(),
 })//.unknown()
 
-export default function validate(config, schema_ = schema) {
+// Easier consumability for require (default use case for non-transpiled webpack configs)
+module.exports.schema = schema
+
+module.exports = function validate(config, schema_ = schema) {
   Joi.assert(config, schema_)
 }
