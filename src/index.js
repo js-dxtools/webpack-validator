@@ -33,14 +33,5 @@ export const schema = Joi.object({
 })//.unknown()
 
 export default function validate(config, schema_ = schema) {
-  const options = {
-    abortEarly: false,
-  }
-  try {
-    Joi.assert(config, schema_, options)
-  } catch (err) {
-    return err
-  }
-
-  return null
+  Joi.assert(config, schema_)
 }

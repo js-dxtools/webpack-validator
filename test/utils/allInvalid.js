@@ -3,7 +3,12 @@ import validate from '../../src/index'
 export default (configs, schema) => {
   configs.forEach(({ input: invalidConfig, error: expectedError }, n) => {
     it(`invalid #${n} should be invalid`, () => {
-      const result = validate(invalidConfig, schema)
+      let result
+      try {
+        validate(invalidConfig, schema)
+      } catch (e) {
+        result = e
+      }
 
       assert(result)
       if (expectedError) {
