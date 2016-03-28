@@ -9,7 +9,7 @@ export default (configs, schema) => {
       } catch (e) {
         result = e
       }
-        
+
       try {
         assert(!result)
       } catch (e) {
