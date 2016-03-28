@@ -1,4 +1,5 @@
 import Joi from 'joi'
+import chalk from 'chalk'
 import moduleSchema from './properties/module'
 
 const schema = Joi.object({
@@ -32,8 +33,11 @@ const schema = Joi.object({
   metadata: Joi.any(),
 })//.unknown()
 
+
 // Easier consumability for require (default use case for non-transpiled webpack configs)
 module.exports = function validate(config, schema_ = schema) {
   Joi.assert(config, schema_)
+  console.info(chalk.green('[webpack-joi-schema] Config is valid.'))
+  return config
 }
 module.exports.schema = schema

@@ -11,10 +11,7 @@ In your `webpack.config.js`:
 ```js
 const validate = require('webpack-joi-schema')
 
-const config = { /* ... your webpack config */ }
-validate(config) // Will throw errors when config is not valid
-
-module.exports = config
+module.exports = validate({ /* ... your webpack config */ })
 ```
 
 If you need to extend the schema, for example for custom top level properties or properties added by third party plugins like `eslint-loader` (which adds a toplevel `eslint` property), do it like this:
@@ -33,9 +30,9 @@ const yourSchema = schema.concat(Joi.object({
 }))
 
 const config = { /* ... your webpack config */ }
-validate(config, yourSchema) // Pass your config as second parameter
 
-module.exports = config
+// Override default config by supplying your config as second parameter.
+module.exports = validate(config, yourSchema) 
 ```
 
 
