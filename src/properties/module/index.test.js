@@ -90,7 +90,7 @@ const invalidModuleConfigs = [
     input: {
       loaders: [{ test: (foo, bar) => `${foo}-${bar}`, loaders: ['file-loader'] }],
     },
-    // One 1-arity functions are allowed
+    // Only 1-arity functions are allowed
     error: { message: `"test" ${CONDITION_MESSAGE}` },
   },
   // #7
@@ -106,7 +106,6 @@ const invalidModuleConfigs = [
     input: {
       loaders: [{ test: /foo/ }],
     },
-    // query can only be supplied when `loader` property is supplied
     error: { message: '"value" must contain at least one of [loaders, loader]' },
   },
   // #9
@@ -114,7 +113,6 @@ const invalidModuleConfigs = [
     input: {
       loaders: [{ test: /foo/, loader: 'foo', query: 'query' }],
     },
-    // query can only be supplied when `loader` property is supplied
     error: { message: '"query" must be an object' },
   },
 ]

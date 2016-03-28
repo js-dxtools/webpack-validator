@@ -1,13 +1,24 @@
 import validate from '../../src/index'
 
 export default (configs, schema) => {
-  configs.forEach(({ input: invalidConfig, error: expectedError }, n) => {
+  // Set throw to true for debugging reasons
+  configs.forEach(({ input: invalidConfig, error: expectedError, throwError = false }, n) => {
     it(`invalid #${n} should be invalid`, () => {
+      if (!invalidConfig) {
+        throw new Error('Pass data as `input` property')
+      }
+      if (!expectedError) {
+        throw new Error('Pass expected error as `error` property')
+      }
+
       let result
       try {
         validate(invalidConfig, schema)
       } catch (e) {
         result = e
+      }
+      if (throwError) {
+        throw result
       }
 
       assert(result)

@@ -1,6 +1,7 @@
 import Joi from 'joi'
 import chalk from 'chalk'
 import moduleSchema from './properties/module'
+import entrySchema from './properties/entry'
 
 const schema = Joi.object({
   amd: Joi.any(),
@@ -10,7 +11,7 @@ const schema = Joi.object({
   debug: Joi.any(),
   devServer: Joi.any(),
   devtool: Joi.any(),
-  entry: Joi.any(),
+  entry: entrySchema,
   externals: Joi.any(),
   loader: Joi.any(),
   module: moduleSchema,
