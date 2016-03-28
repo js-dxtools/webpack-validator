@@ -33,8 +33,7 @@ const schema = Joi.object({
 })//.unknown()
 
 // Easier consumability for require (default use case for non-transpiled webpack configs)
-module.exports.schema = schema
-
 module.exports = function validate(config, schema_ = schema) {
   Joi.assert(config, schema_)
 }
+module.exports.schema = schema
