@@ -17,5 +17,27 @@ validate(config) // Will throw errors when config is not valid
 module.exports = config
 ```
 
+If you need to extend the schema, for example for custom top level properties or properties added by third party plugins like `eslint-loader` (which adds a toplevel `eslint` property), do it like this:
+
+```js
+const validate = require('webpack-joi-schema')
+const schema = require('webpack-joi-schema').schema
+
+// joi is installed as dependency of this package and will be available in node_modules
+// if you use npm 3. Otherwise install it explicitly.
+const Joi = require('joi') 
+
+const yourSchema = schema.concat(Joi.object({
+  // this would just allow the property and doesn't perform any additional validation
+  eslint: Joi.any() 
+}))
+
+const config = { /* ... your webpack config */ }
+validate(config, yourSchema) // Pass your config as second parameter
+
+module.exports = config
+```
+
+
 #### License
 MIT
