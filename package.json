@@ -29,7 +29,8 @@
     ]
   },
   "dependencies": {
-    "lodash": "4.6.1"
+    "lodash": "4.6.1",
+    "joi": "8.0.5"
   },
   "devDependencies": {
     "autoprefixer": "6.3.4",
@@ -47,7 +48,6 @@
     "extract-text-webpack-plugin": "1.0.1",
     "ghooks": "1.0.3",
     "html-webpack-plugin": "2.14.0",
-    "joi": "8.0.5",
     "mocha": "2.4.5",
     "npm-run-all": "1.6.0",
     "nyc": "6.1.1",
