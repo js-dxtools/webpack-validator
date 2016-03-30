@@ -7,7 +7,7 @@
 
 Writing webpack configs is a brittle and error-prone. This package provides a [joi](https://github.com/hapijs/joi) object schema for webpack configs. This gets you a) static type safety and b) "semantic" validations such as "`module.loaders.loader` and `module.loaders.loaders` can not be used simultaneously" or "`module.loaders.query` can only be used with `module.loaders.loader`, not with `module.loaders.loaders`".
 
-**Note**: This is a work in progress. If you like it, you're welcome to give feedback & PR's.
+**Note**: This is a work in progress. You're very welcome to give [feedback](https://github.com/jonathanewerner/webpack-validator/issues) & [PR's](https://github.com/jonathanewerner/webpack-validator).
 
 ### Usage
 In your `webpack.config.js`:
