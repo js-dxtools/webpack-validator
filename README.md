@@ -38,6 +38,32 @@ const config = { /* ... your webpack config */ }
 module.exports = validate(config, yourSchema)
 ```
 
+### Example
+Take this simple webpack config. It has a tiny, hard to spot error. Can you find it?
+```js
+var config = {
+  module: {
+    loaders: [
+      { test: /\.js$/, loaders: 'babel-loader', exclude: /node_modules/ }
+    ]
+  },
+  output: {
+    library: 'Redux',
+    libraryTarget: 'umd'
+  },
+  plugins: [
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(env)
+    })
+  ]
+};
+```
+
+webpack-validator makes it easy:
+
+![validation-example](https://cloud.githubusercontent.com/assets/3755413/14134087/b3279738-f654-11e5-9752-367b01ac123d.png)
+
 
 #### License
 MIT
