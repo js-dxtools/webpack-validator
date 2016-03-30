@@ -20,6 +20,10 @@
     "release:beta": "npm run release && npm run tag:beta",
     "tag:beta": "with-package npm dist-tag add pkg.name@pkg.version beta"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonathanewerner/webpack-validator.git"
+  },
   "author": "Jonathan Werner <jwe@posteo.de> (http://jonathanwerner.net)",
   "license": "MIT",
   "babel": {
