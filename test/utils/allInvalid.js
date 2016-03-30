@@ -7,9 +7,6 @@ export default (configs, schema) => {
       if (!invalidConfig) {
         throw new Error('Pass data as `input` property')
       }
-      if (!expectedError) {
-        throw new Error('Pass expected error as `error` property')
-      }
 
       let result
       try {
@@ -32,6 +29,8 @@ export default (configs, schema) => {
         }
 
         if (expectedError.message) {
+          // console.log(result.details[0].message)
+          // console.log(expectedError.message)
           assert(result.details[0].message === expectedError.message)
         }
       }

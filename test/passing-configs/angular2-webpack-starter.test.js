@@ -95,9 +95,9 @@ module.exports = {
   ],
     // we need this due to problems with es6-shim
   node: {
-    global: 'window',
+    global: false,
     progress: false,
-    crypto: 'empty',
+    crypto: false,
     module: false,
     clearImmediate: false,
     setImmediate: false
