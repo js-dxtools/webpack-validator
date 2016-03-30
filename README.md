@@ -9,35 +9,6 @@ Writing webpack configs is a brittle and error-prone. This package provides a [j
 
 **Note**: This is a work in progress. You're very welcome to give [feedback](https://github.com/jonathanewerner/webpack-validator/issues) & [PR's](https://github.com/jonathanewerner/webpack-validator).
 
-### Usage
-In your `webpack.config.js`:
-```js
-const validate = require('webpack-validator')
-
-module.exports = validate({ /* ... your webpack config */ })
-```
-
-If you need to extend the schema, for example for custom top level properties or properties added by third party plugins like `eslint-loader` (which adds a toplevel `eslint` property), do it like this:
-
-```js
-const validate = require('webpack-validator')
-const schema = require('webpack-validator').schema
-
-// joi is installed as dependency of this package and will be available in node_modules
-// if you use npm 3. Otherwise install it explicitly.
-const Joi = require('joi')
-
-const yourSchema = schema.concat(Joi.object({
-  // this would just allow the property and doesn't perform any additional validation
-  eslint: Joi.any()
-}))
-
-const config = { /* ... your webpack config */ }
-
-// Override default config by supplying your config as second parameter.
-module.exports = validate(config, yourSchema)
-```
-
 ### Example
 Take this simple webpack config. It has a tiny, hard to spot error. Can you find it?
 ```js
@@ -64,6 +35,38 @@ webpack-validator makes it easy:
 
 ![validation-example](https://cloud.githubusercontent.com/assets/3755413/14134087/b3279738-f654-11e5-9752-367b01ac123d.png)
 
+### Usage
+In your `webpack.config.js`:
+```js
+const validate = require('webpack-validator')
+
+module.exports = validate({ /* ... your webpack config */ })
+```
+Now run webpack. Either everything is green and the build continues or joi will you what's wrong and the build won't continue. 
+
+Alternatively just run `node webpack.config.js` to only validate your config and not run webpack.
+
+#### Customizing
+If you need to extend the schema, for example for custom top level properties or properties added by third party plugins like `eslint-loader` (which adds a toplevel `eslint` property), do it like this:
+
+```js
+const validate = require('webpack-validator')
+const schema = require('webpack-validator').schema
+
+// joi is installed as dependency of this package and will be available in node_modules
+// if you use npm 3. Otherwise install it explicitly.
+const Joi = require('joi')
+
+const yourSchema = schema.concat(Joi.object({
+  // this would just allow the property and doesn't perform any additional validation
+  eslint: Joi.any()
+}))
+
+const config = { /* ... your webpack config */ }
+
+// Override default config by supplying your config as second parameter.
+module.exports = validate(config, yourSchema)
+```
 
 #### License
 MIT
