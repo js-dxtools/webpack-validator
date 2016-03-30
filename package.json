@@ -1,7 +1,7 @@
 {
-  "name": "webpack-joi-schema",
-  "version": "1.0.0-beta.8",
-  "description": "A Joi schema for webpack configs",
+  "name": "webpack-validator",
+  "version": "1.0.0-beta.9",
+  "description": "Validate your webpack config with joi",
   "main": "dist",
   "files": [
     "dist"
