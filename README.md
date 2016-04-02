@@ -42,7 +42,7 @@ const validate = require('webpack-validator')
 
 module.exports = validate({ /* ... your webpack config */ })
 ```
-Now run webpack. Either everything is green and the build continues or joi will you what's wrong and the build won't continue. 
+Now run webpack. Either everything is green and the build continues or `joi` will let you know what's wrong and the build won't continue.
 
 Alternatively just run `node webpack.config.js` to only validate your config and not run webpack.
 
