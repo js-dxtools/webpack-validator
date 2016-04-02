@@ -12,7 +12,7 @@
     "build": "babel -d dist src",
     "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "lint": "eslint .",
-    "cover": "nyc --reporter=lcov --reporter=text --reporter=html npm test",
+    "cover": "nyc --reporter=lcov --reporter=text --reporter=html mocha src/**/*.test.js",
     "report-coverage": "cat ./coverage/lcov.info | node_modules/.bin/codecov",
     "test": "mocha `find src -name node_modules -prune -o -name '*.test.js' -print`",
     "watch:test": "npm run test -- -w",
