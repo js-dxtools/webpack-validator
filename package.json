@@ -7,6 +7,7 @@
     "dist"
   ],
   "scripts": {
+    "commit": "git-cz",
     "prebuild": "rimraf dist",
     "validate": "npm-run-all --parallel lint cover build test --sequential check-coverage",
     "build": "babel --ignore *.test.js -d dist src",
@@ -46,8 +47,10 @@
     "babel-preset-stage-2": "6.5.0",
     "babel-register": "6.7.2",
     "codecov": "1.0.1",
+    "commitizen": "^2.7.6",
     "compression-webpack-plugin": "0.3.1",
     "copy-webpack-plugin": "1.1.1",
+    "cz-conventional-changelog": "^1.1.5",
     "eslint": "2.5.1",
     "eslint-config-jonathanewerner": "1.0.1",
     "extract-text-webpack-plugin": "1.0.1",
@@ -87,6 +90,9 @@
     "ghooks": {
       "commit-msg": "validate-commit-msg",
       "pre-commit": "npm run validate -s"
+    },
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
     }
   }
 }
