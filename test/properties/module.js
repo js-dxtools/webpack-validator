@@ -1,5 +1,5 @@
-import moduleSchema, { CONDITION_MESSAGE, LOADERS_QUERY_MESSAGE } from './index'
-import { allValid, allInvalid } from '../../../test/utils'
+import moduleSchema, { CONDITION_MESSAGE, LOADERS_QUERY_MESSAGE } from '../../src/properties/module'
+import { allValid, allInvalid } from '../utils'
 
 const validModuleConfigs = [
   // #0

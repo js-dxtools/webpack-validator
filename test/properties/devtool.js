@@ -1,5 +1,5 @@
-import schema from './index'
-import { allValid, allInvalid } from '../../../test/utils'
+import schema from '../../src/properties/devtool'
+import { allValid, allInvalid } from '../utils'
 
 const validModuleConfigs = [
   // #0
