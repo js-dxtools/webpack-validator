@@ -14,7 +14,7 @@
     "lint": "eslint .",
     "cover": "nyc --reporter=lcov --reporter=text --reporter=html mocha src/**/*.test.js",
     "report-coverage": "cat ./coverage/lcov.info | node_modules/.bin/codecov",
-    "test": "mocha `find src -name node_modules -prune -o -name '*.test.js' -print`",
+    "test": "mocha src/**/*.test.js",
     "watch:test": "npm run test -- -w",
     "release": "npm run build && with-package git commit -am pkg.version && with-package git tag pkg.version && git push && npm publish && git push --tags",
     "release:beta": "npm run release && npm run tag:beta",
