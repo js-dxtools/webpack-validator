@@ -9,7 +9,7 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "validate": "npm-run-all --parallel lint cover build test --sequential check-coverage",
-    "build": "babel -d dist src",
+    "build": "babel --ignore *.test.js -d dist src",
     "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "lint": "eslint .",
     "cover": "nyc --reporter=lcov --reporter=text --reporter=html mocha src/**/*.test.js",
