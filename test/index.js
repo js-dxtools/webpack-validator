@@ -1,6 +1,6 @@
 import sinon from 'sinon'
-import configs from '../test/passing-configs'
-import validate from './'
+import configs from './passing-configs'
+import validate from '../src'
 
 before(() => {
   !console.info.reset && sinon.stub(console, 'info')

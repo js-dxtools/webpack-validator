@@ -1,5 +1,5 @@
-import schema, { EXTERNALS_MESSAGE } from './index'
-import { allValid, allInvalid } from '../../../test/utils'
+import schema, { EXTERNALS_MESSAGE } from '../../src/properties/externals'
+import { allValid, allInvalid } from '../utils'
 
 const validModuleConfigs = [
   // #0

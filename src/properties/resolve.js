@@ -1,5 +1,5 @@
 import Joi from 'joi'
-import { absolutePath } from '../../types'
+import { absolutePath } from '../types'
 
 export default Joi.object({
   alias: Joi.object().pattern(/.+/, Joi.string()),
