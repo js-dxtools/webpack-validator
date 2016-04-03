@@ -1,5 +1,8 @@
 import validate from '../../src/index'
 
+/**
+ * For all supplied configs (array of objects), check that they are invalid given a schema.
+ */
 export default (configs, schema) => {
   // Set throw to true for debugging reasons
   configs.forEach(({ input: invalidConfig, error: expectedError, throwError = false }, n) => {

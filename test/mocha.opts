@@ -1,1 +1,1 @@
---require mochasetup
+--require test/setup
