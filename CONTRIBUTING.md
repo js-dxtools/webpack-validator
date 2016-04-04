@@ -10,6 +10,9 @@
 3. `$ npm run validate` to validate you've got it working
 4. Create a branch for your PR
 
+### Testing workflow
+Have a look at `test/README.md` to see how testing works. Run `npm run watch:test` while developing. Have fun! :)
+
 ## Editor setup
 
 Please install [editorconfig plugin](http://editorconfig.org/#download) for your preferred editor.
