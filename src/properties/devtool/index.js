@@ -17,8 +17,6 @@ const DEVTOOL_REGEX = new RegExp(
   '(#@|@|#)?' +       // maybe one of the pragmas
   `(${options.join('|')})` // one of the options
 )
-console.info('[index.js] DEVTOOL_REGEX: ', DEVTOOL_REGEX)
-
 
 export default Joi
   .string()
