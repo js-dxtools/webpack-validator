@@ -10,6 +10,7 @@ export default Joi.object({
   devtoolModuleFilenameTemplate: [notAbsolutePath, Joi.func()],
   devtoolFallbackModuleFilenameTemplate: [notAbsolutePath, Joi.func()],
   devtoolLineToLine: Joi.any(),
+  hashDigestLength: Joi.number(),
   hotUpdateChunkFilename: notAbsolutePath,
   hotUpdateMainFilename: notAbsolutePath,
   jsonpFunction: Joi.string(),

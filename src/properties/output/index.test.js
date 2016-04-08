@@ -37,6 +37,8 @@ const validModuleConfigs = [
   { crossOriginLoading: false },
   // #16
   { crossOriginLoading: 'anonymous' },
+  // #17
+  { hashDigestLength: 6 }, // undocumented
 
 ]
 
