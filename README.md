@@ -13,9 +13,9 @@
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](http://commitizen.github.io/cz-cli/)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)
 
-Writing webpack configs is brittle and error-prone. This package provides a [joi](https://github.com/hapijs/joi) object schema for webpack configs. This gets you a) static type safety and b) semantic validations such as "`module.loaders.loader` and `module.loaders.loaders` can not be used simultaneously" or "`module.loaders.query` can only be used with `module.loaders.loader`, not with `module.loaders.loaders`".
+Writing webpack configs is brittle and error-prone. This package provides a [joi](https://github.com/hapijs/joi) object schema for webpack configs. This gets you a) static type safety, b) property spell checking and c) semantic validations such as "`loader` and `loaders` can not be used simultaneously" or "`query` can only be used with `loader`, not with `loaders`".
 
-**Note**: This is a work in progress. You're very welcome to give [feedback](https://github.com/jonathanewerner/webpack-validator/issues) & [PR's](https://github.com/jonathanewerner/webpack-validator).
+You're very welcome to give [feedback](https://github.com/jonathanewerner/webpack-validator/issues) & [PR's](https://github.com/jonathanewerner/webpack-validator).
 
 ### Example
 Take this simple webpack config. It has a tiny, hard to spot error. Can you find it?
