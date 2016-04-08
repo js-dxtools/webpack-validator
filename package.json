@@ -1,6 +1,5 @@
 {
   "name": "webpack-validator",
-  "version": "1.0.0-beta.10",
   "description": "Validate your webpack config with joi",
   "main": "dist",
   "files": [
@@ -19,11 +18,12 @@
     "watch:test": "npm run test -- -w",
     "release": "npm run build && with-package git commit -am pkg.version && with-package git tag pkg.version && git push && npm publish && git push --tags",
     "release:beta": "npm run release && npm run tag:beta",
-    "tag:beta": "with-package npm dist-tag add pkg.name@pkg.version beta"
+    "tag:beta": "with-package npm dist-tag add pkg.name@pkg.version beta",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jonathanewerner/webpack-validator.git"
+    "url": "https://github.com/jonathanewerner/webpack-validator.git"
   },
   "author": "Jonathan Werner <jwe@posteo.de> (http://jonathanwerner.net)",
   "license": "MIT",
@@ -63,6 +63,7 @@
     "path-parse": "1.0.5",
     "power-assert": "1.3.1",
     "rimraf": "2.5.2",
+    "semantic-release": "^4.3.5",
     "sinon": "1.17.3",
     "validate-commit-msg": "2.5.0",
     "webpack": "1.12.14",
