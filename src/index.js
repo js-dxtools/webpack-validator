@@ -8,6 +8,7 @@ import externalsSchema from './properties/externals'
 import nodeSchema from './properties/node'
 import pluginsSchema from './properties/plugins'
 import resolveSchema from './properties/resolve'
+import outputSchema from './properties/output'
 import { absolutePath } from './types'
 
 const schema = Joi.object({
@@ -23,7 +24,7 @@ const schema = Joi.object({
   loader: Joi.any(), // ?
   module: moduleSchema,
   node: nodeSchema,
-  output: Joi.any(),
+  output: outputSchema,
   plugins: pluginsSchema,
   profile: Joi.boolean(),
   recordsInputPath: absolutePath,
@@ -33,8 +34,8 @@ const schema = Joi.object({
   resolveLoader: resolveSchema.concat(Joi.object({
     moduleTemplates: Joi.array().items(Joi.string()),
   })),
-  stats: Joi.any(),
-  target: Joi.any(),
+  stats: Joi.any(), // TODO
+  target: Joi.any(), // TODO
 
   // Plugins
   postcss: Joi.any(),
