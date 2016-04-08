@@ -4,6 +4,14 @@
 
 [![travis build](https://img.shields.io/travis/jonathanewerner/webpack-validator.svg?style=flat-square)](https://travis-ci.org/jonathanewerner/webpack-validator)
 [![codecov.io](https://img.shields.io/codecov/c/github/jonathanewerner/webpack-validator.svg?style=flat-square)](https://codecov.io/github/jonathanewerner/webpack-validator?branch=master)
+![dependencies](https://img.shields.io/david/jonathanewerner/webpack-validator.svg?style=flat-square)
+![devDependencies](https://img.shields.io/david/dev/jonathanewerner/webpack-validator.svg?style=flat-square)
+[![version](https://img.shields.io/npm/v/webpack-validator.svg?style=flat-square)](http://npm.im/webpack-validator)
+[![downloads](https://img.shields.io/npm/dm/webpack-validator.svg?style=flat-square)](http://npm-stat.com/charts.html?package=webpack-validator&from=2015-08-01)
+[![MIT License](https://img.shields.io/npm/l/webpack-validator.svg?style=flat-square)](http://opensource.org/licenses/MIT)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](http://commitizen.github.io/cz-cli/)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)
 
 Writing webpack configs is brittle and error-prone. This package provides a [joi](https://github.com/hapijs/joi) object schema for webpack configs. This gets you a) static type safety and b) semantic validations such as "`module.loaders.loader` and `module.loaders.loaders` can not be used simultaneously" or "`module.loaders.query` can only be used with `module.loaders.loader`, not with `module.loaders.loaders`".
 
