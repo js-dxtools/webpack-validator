@@ -58,7 +58,7 @@
     "html-webpack-plugin": "2.15.0",
     "mocha": "2.4.5",
     "npm-run-all": "1.7.0",
-    "nyc": "6.2.1",
+    "nyc": "6.4.0",
     "path-here": "1.1.0",
     "path-parse": "1.0.5",
     "power-assert": "1.3.1",
