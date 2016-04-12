@@ -76,5 +76,8 @@ const config = { /* ... your webpack config */ }
 module.exports = validate(config, yourSchema)
 ```
 
+#### Support
+Because this module uses the amazing `Joi` validation library, this module only supports Node >=4.0.0.
+
 #### License
 MIT
