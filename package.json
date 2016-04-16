@@ -49,7 +49,7 @@
     "codecov": "1.0.1",
     "commitizen": "^2.7.6",
     "compression-webpack-plugin": "0.3.1",
-    "copy-webpack-plugin": "2.0.1",
+    "copy-webpack-plugin": "2.1.0",
     "cz-conventional-changelog": "^1.1.5",
     "eslint": "2.8.0",
     "eslint-config-jonathanewerner": "1.0.1",
