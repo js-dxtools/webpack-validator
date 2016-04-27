@@ -9,6 +9,7 @@ import nodeSchema from './properties/node'
 import pluginsSchema from './properties/plugins'
 import resolveSchema from './properties/resolve'
 import outputSchema from './properties/output'
+import watchOptionsSchema from './properties/watchOptions'
 import { absolutePath } from './types'
 
 const schema = Joi.object({
@@ -34,6 +35,7 @@ const schema = Joi.object({
   resolveLoader: resolveSchema.concat(Joi.object({
     moduleTemplates: Joi.array().items(Joi.string()),
   })),
+  watchOptions: watchOptionsSchema,
   stats: Joi.any(), // TODO
   target: Joi.any(), // TODO
 
