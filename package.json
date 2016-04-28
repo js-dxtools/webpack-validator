@@ -35,8 +35,8 @@
   },
   "dependencies": {
     "chalk": "1.1.3",
-    "joi": "8.0.5",
-    "lodash": "4.11.1"
+    "lodash": "4.11.1",
+    "webpack-config-validationscheme": "1.1.0"
   },
   "devDependencies": {
     "autoprefixer": "6.3.6",
