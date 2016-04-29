@@ -1,4 +1,5 @@
 node_modules/
+packages/*/lib/**/*.js
 .nyc_output/
 coverage/
 *.log

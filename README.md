@@ -2,10 +2,10 @@
 
  > Validate your webpack configs with joi
 
-[![travis build](https://img.shields.io/travis/jonathanewerner/webpack-validator.svg?style=flat-square)](https://travis-ci.org/jonathanewerner/webpack-validator)
-[![codecov.io](https://img.shields.io/codecov/c/github/jonathanewerner/webpack-validator.svg?style=flat-square)](https://codecov.io/github/jonathanewerner/webpack-validator?branch=master)
-![dependencies](https://img.shields.io/david/jonathanewerner/webpack-validator.svg?style=flat-square)
-![devDependencies](https://img.shields.io/david/dev/jonathanewerner/webpack-validator.svg?style=flat-square)
+[![travis build](https://img.shields.io/travis/js-dxtools/webpack-validator.svg?style=flat-square)](https://travis-ci.org/js-dxtools/webpack-validator)
+[![codecov.io](https://img.shields.io/codecov/c/github/js-dxtools/webpack-validator.svg?style=flat-square)](https://codecov.io/github/js-dxtools/webpack-validator?branch=master)
+![dependencies](https://img.shields.io/david/js-dxtools/webpack-validator.svg?style=flat-square)
+![devDependencies](https://img.shields.io/david/dev/js-dxtools/webpack-validator.svg?style=flat-square)
 [![version](https://img.shields.io/npm/v/webpack-validator.svg?style=flat-square)](http://npm.im/webpack-validator)
 [![downloads](https://img.shields.io/npm/dm/webpack-validator.svg?style=flat-square)](http://npm-stat.com/charts.html?package=webpack-validator&from=2015-08-01)
 [![MIT License](https://img.shields.io/npm/l/webpack-validator.svg?style=flat-square)](http://opensource.org/licenses/MIT)
@@ -15,7 +15,7 @@
 
 Writing webpack configs is brittle and error-prone. This package provides a [joi](https://github.com/hapijs/joi) object schema for webpack configs. This gets you a) static type safety, b) property spell checking and c) semantic validations such as "`loader` and `loaders` can not be used simultaneously" or "`query` can only be used with `loader`, not with `loaders`".
 
-You're very welcome to give [feedback](https://github.com/jonathanewerner/webpack-validator/issues) & [PR's](https://github.com/jonathanewerner/webpack-validator).
+You're very welcome to give [feedback](https://github.com/js-dxtools/webpack-validator/issues) & [PR's](https://github.com/js-dxtools/webpack-validator).
 
 ### Example
 Take this simple webpack config. It has a tiny, hard to spot error. Can you find it?

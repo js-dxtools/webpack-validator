@@ -3,12 +3,16 @@
 **Working on your first Pull Request?** You can learn how from this *free* series
 [How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)
 
-## Project setup
+## Project structure
 
+This project uses babel's [monorepo approach](https://github.com/babel/babel/blob/master/doc/design/monorepo.md); it also uses the monorepo bootstrapping tool [lerna](https://github.com/kittens/lerna) that the babel repo uses. This allows rather painless modularization without duplicating test / infra each time a new module is added.
+
+Basically, each npm package we publish has a folder beneath `packages`. Publishing is done manually by incrementing the version in the `VERSION` file and running `npm run publish` (for more info about this visit the [lerna README](https://github.com/kittens/lerna)). We'll see how this works out. :)
+
+## Setup
 1. Fork and clone the repo
-2. `$ npm install` to install dependencies
-3. `$ npm run validate` to validate you've got it working
-4. Create a branch for your PR
+2. `$ npm run bootstrap` to set everything up and validate the setup is working
+3. Create a branch for your PR
 
 ### Testing workflow
 Have a look at `test/README.md` to see how testing works. Run `npm run watch:test` while developing. Have fun! :)
