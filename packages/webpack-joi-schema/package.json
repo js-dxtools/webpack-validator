@@ -1,0 +1,11 @@
+{
+  "name": "webpack-joi-schema",
+  "version": "1.1.0",
+  "description": "A joi schema for webpack configs",
+  "main": "lib",
+  "files": "lib",
+  "dependencies": {
+    "joi": "8.0.5"
+  },
+  "license": "MIT"
+}

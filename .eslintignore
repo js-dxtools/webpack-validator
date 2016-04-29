@@ -1,5 +1,6 @@
 node_modules/
 dist/
+packages/*/lib/
 test/passing-configs
 coverage/
 .nyc_output/
