@@ -43,8 +43,10 @@ webpack-validator makes it easy:
 
 ![validation-example](https://cloud.githubusercontent.com/assets/3755413/14134087/b3279738-f654-11e5-9752-367b01ac123d.png)
 
-### Usage API
-In your `webpack.config.js`:
+### Usage
+There are two ways to use webpack-validator: a) "programmatically" by wrapping your webpack config object with a validation function or b) using a command line interface.
+
+For the first approach, add this in your `webpack.config.js`:
 ```js
 const validate = require('webpack-validator')
 
@@ -52,7 +54,8 @@ module.exports = validate({ /* ... your webpack config */ })
 ```
 Now run webpack. Either everything is green and the build continues or `joi` will let you know what's wrong and the build won't continue.
 
-Alternatively just run `node webpack.config.js` to only validate your config and not run webpack.
+#### CLI
+For CLI usage you probably want to install the tool globally (`npm install -g webpack-validator`) first. Then just run `webpack-validator <your-config>`.
 
 #### Customizing
 If you need to extend the schema, for example for custom top level properties or properties added by third party plugins like `eslint-loader` (which adds a toplevel `eslint` property), do it like this:
@@ -76,12 +79,8 @@ const config = { /* ... your webpack config */ }
 module.exports = validate(config, yourSchema)
 ```
 
-#### Advanced Usage API
+#### Advanced Usage
 If you need to access the validation results directly and want to control the side-effects (i.e. console.log output, `process.exit(1)` on fail behaviour) yourself, you can call the validation function like so: `validate(config, yourSchema, { returnValidation: true })`. This will make 1) the function return the validation results instead of your configuration and 2) not perform any side effects.
-
-### Usage CLI
-
-`webpack-validator yourConfigFile`
 
 #### Support
 Because this module uses the amazing `Joi` validation library, this module only supports Node >=4.0.0.
