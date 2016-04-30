@@ -11,30 +11,26 @@ export default (configs, schema) => {
         throw new Error('Pass data as `input` property')
       }
 
-      let result
-      try {
-        validate(invalidConfig, schema)
-      } catch (e) {
-        result = e
-      }
+      const result = validate(invalidConfig, schema, { returnValidation: true })
+      assert(result.error)
+      const { error } = result
+
       if (throwError) {
-        throw result
+        throw error
       }
 
-      assert(result)
+      assert(error)
       if (expectedError) {
         if (expectedError.path) {
-          assert(result.details[0].path === expectedError.path)
+          assert(error.details[0].path === expectedError.path)
         }
 
         if (expectedError.type) {
-          assert(result.details[0].type === expectedError.type)
+          assert(error.details[0].type === expectedError.type)
         }
 
         if (expectedError.message) {
-          // console.log(result.details[0].message)
-          // console.log(expectedError.message)
-          assert(result.details[0].message === expectedError.message)
+          assert(error.details[0].message === expectedError.message)
         }
       }
     })

@@ -48,8 +48,19 @@ const schema = Joi.object({
 
 
 // Easier consumability for require (default use case for non-transpiled webpack configs)
-module.exports = function validate(config, schema_ = schema) {
-  Joi.assert(config, schema_)
+module.exports = function validate(config, schema_ = schema, options = {}) {
+  const {
+    // Don't return the config object and throw on error, but just return the validation result
+    returnValidation, // bool
+  } = options
+
+  const validationResult = Joi.validate(config, schema_, { abortEarly: false })
+  if (returnValidation) return validationResult
+
+  if (validationResult.error) {
+    console.error(validationResult.error.annotate())
+    process.exit(1)
+  }
   console.info(chalk.green('[webpack-validator] Config is valid.'))
   return config
 }
