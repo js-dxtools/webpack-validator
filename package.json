@@ -23,9 +23,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jonathanewerner/webpack-validator.git"
+    "url": "https://github.com/js-dxtools/webpack-validator.git"
   },
-  "author": "Jonathan Werner <jwe@posteo.de> (http://jonathanwerner.net)",
+  "contributors": [
+    "Jonathan Werner <jwe@posteo.de> (http://jonathanwerner.net)",
+    "Juho Vepsäläinen (http://survivejs.com/)",
+    "Kent C. Dodds <kent@doddsfamily.us> (http://kentcdodds.com/)",
+    "Martin Schmid",
+    "Sarbbottam Bandyopadhyay"
+  ],
   "license": "MIT",
   "babel": {
     "presets": [
