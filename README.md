@@ -44,7 +44,7 @@ webpack-validator makes it easy:
 ![validation-example](https://cloud.githubusercontent.com/assets/3755413/14134087/b3279738-f654-11e5-9752-367b01ac123d.png)
 
 ### Usage
-There are two ways to use webpack-validator: a) "programmatically" by wrapping your webpack config object with a validation function or b) using a command line interface.
+There are two ways to use webpack-validator: a) "programmatically" by wrapping your webpack config object with a validation function or b) by using a command line interface.
 
 For the first approach, add this in your `webpack.config.js`:
 ```js
