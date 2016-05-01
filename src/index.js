@@ -52,6 +52,7 @@ module.exports = function validate(config, schema_ = schema, options = {}) {
   const {
     // Don't return the config object and throw on error, but just return the validation result
     returnValidation, // bool
+    quiet, // bool
   } = options
 
   const validationResult = Joi.validate(config, schema_, { abortEarly: false })
@@ -61,7 +62,11 @@ module.exports = function validate(config, schema_ = schema, options = {}) {
     console.error(validationResult.error.annotate())
     process.exit(1)
   }
-  console.info(chalk.green('[webpack-validator] Config is valid.'))
+
+  if (!quiet) {
+    console.info(chalk.green('[webpack-validator] Config is valid.'))
+  }
+
   return config
 }
 module.exports.schema = schema

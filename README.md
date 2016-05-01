@@ -79,6 +79,9 @@ const config = { /* ... your webpack config */ }
 module.exports = validate(config, yourSchema)
 ```
 
+#### Quiet Mode
+If you want to mute console output apart from errors, set `--quiet` or `validate(config, yourSchema, {quiet: true})`. This is particularly useful if you are using webpack `--json` as you'll want to avoid writing additional text to the JSON output.
+
 #### Advanced Usage
 If you need to access the validation results directly and want to control the side-effects (i.e. console.log output, `process.exit(1)` on fail behaviour) yourself, you can call the validation function like so: `validate(config, yourSchema, { returnValidation: true })`. This will make 1) the function return the validation results instead of your configuration and 2) not perform any side effects.
 

@@ -11,6 +11,7 @@ let configFile
 
 program
   .arguments('<configFileName>')
+  .option('-q, --quiet', 'Quiet output')
   .action((configFileName) => {
     configFile = configFileName
   })
@@ -25,15 +26,18 @@ function errorHandler(err) {
   process.exit(1)
 }
 
-function validateConfig(webpackConfigFile) {
-  console.log(`Reading: ${webpackConfigFile}`)
+function validateConfig(webpackConfigFile, quiet) {
+  if (!quiet) console.log(`Reading: ${webpackConfigFile}`)
   const config = require(path.join(process.cwd(), webpackConfigFile))
-  const validationResult = validate(config, schema, { returnValidation: true })
+  const validationResult = validate(config, schema, {
+    returnValidation: true,
+    quiet,
+  })
   if (validationResult.error) {
     console.info(validationResult.error.annotate())
     process.exit(1)
   } else {
-    console.info(`${webpackConfigFile} is valid`)
+    if (!quiet) console.info(`${webpackConfigFile} is valid`)
     process.exit(0)
   }
 }
@@ -51,7 +55,7 @@ fs.stat(configFile, (err, stats) => {
     errorHandler(err)
   } else {
     if (stats.isFile()) {
-      validateConfig(configFile)
+      validateConfig(configFile, program.quiet)
     } else {
       const error = new Error(`Could not find file "${configFile}"`)
       error.type = 'EISDIR'
