@@ -44,4 +44,18 @@ describe('.', () => {
     // process.exit should have been called
     assert(processExitStub.callCount === 1)
   })
+
+  it('should allow console output to be muted', () => {
+    validate({}, {}, { quiet: true })
+
+    // The success message should not have been printed
+    assert(consoleInfoStub.callCount === 0)
+
+    // The error message should not have been printed
+    if (consoleErrorStub.callCount !== 0) {
+      throw new Error(consoleErrorStub.args[0])
+    }
+    // process.exit should not have been called
+    assert(processExitStub.callCount === 0)
+  })
 })
