@@ -10,6 +10,7 @@ import pluginsSchema from './properties/plugins'
 import resolveSchema from './properties/resolve'
 import outputSchema from './properties/output'
 import watchOptionsSchema from './properties/watchOptions'
+import devServerSchema from './properties/devServer'
 import { absolutePath } from './types'
 
 const schema = Joi.object({
@@ -18,7 +19,7 @@ const schema = Joi.object({
   cache: Joi.boolean(),
   context: contextSchema,
   debug: Joi.boolean(),
-  devServer: Joi.object(),
+  devServer: devServerSchema,
   devtool: devtoolSchema,
   entry: entrySchema,
   externals: externalsSchema,
