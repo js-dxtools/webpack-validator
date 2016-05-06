@@ -40,7 +40,7 @@ const invalidModuleConfigs = [
   // #0
   {
     input: {
-      a: 1,
+      a: ['foo'],
       b: true,
       './c': 'c',
       './d': 'var d',
@@ -51,7 +51,7 @@ const invalidModuleConfigs = [
   // #1
   {
     input: [{
-      a: 1,
+      a: ['foo'],
       b: true,
       './c': 'c',
       './d': 'var d',
