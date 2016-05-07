@@ -3,13 +3,13 @@ import { allValid } from '../../../test/utils'
 
 const validModuleConfigs = [
   // #0
-  { aggregateTimeout: 300 },
+  { input: { aggregateTimeout: 300 } },
   // #1
-  { poll: true },
+  { input: { poll: true } },
   // #2
-  { poll: false },
+  { input: { poll: false } },
   // #3
-  { poll: 1000 },
+  { input: { poll: 1000 } },
 ]
 
 describe('watchOptions', () => {

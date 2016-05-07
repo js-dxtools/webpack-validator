@@ -3,25 +3,25 @@ import { allValid, allInvalid } from '../../../test/utils'
 
 const validModuleConfigs = [
   // #0
-  { console: true },
+  { input: { console: true } },
 
   // #1
-  { global: true },
+  { input: { global: true } },
 
   // #2
-  { Buffer: true },
+  { input: { Buffer: true } },
 
   // #3
-  { process: 'mock' },
+  { input: { process: 'mock' } },
 
   // #4
-  { __filename: true },
+  { input: { __filename: true } },
 
   // #5
-  { __dirname: false },
+  { input: { __dirname: false } },
 
   // #6
-  { foo: 'mock' },
+  { input: { foo: 'mock' } },
 ]
 
 const invalidModuleConfigs = [

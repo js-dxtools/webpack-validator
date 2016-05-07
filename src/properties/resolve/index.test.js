@@ -1,42 +1,55 @@
-import schema from './index'
+import schemaFn from './index'
 import { allValid, allInvalid } from '../../../test/utils'
+import path from 'path'
 
 const validModuleConfigs = [
   // #0
-  { alias: { foo: 'bar' } },
+  { input: { alias: { foo: 'bar' } } },
 
   // #1
-  { alias: { foo: 'bar' } },
+  { input: { alias: { foo: 'bar' } } },
 
   // #2
-  { root: 'foo' },
+  { input: { root: __dirname } },
 
   // #3
-  { root: ['foo', 'bar'] },
+  { input: { root: [__dirname, __dirname] } },
 
   // #4
-  { modulesDirectories: ['node_modules', 'bower_foo'] },
+  { input: { modulesDirectories: ['node_modules', 'bower_foo'] } },
 
   // #5
-  { fallback: ['foo', 'bar'] },
+  { input: { fallback: [__dirname, __dirname] } },
 
   // #6
-  { extensions: ['', '.foo'] },
+  { input: { extensions: ['', '.foo'] } },
 
   // #7
-  { packageMains: ['webpack', 'browser', 'web', 'browserify', ['jam', 'main'], 'main'] },
+  { input: { packageMains: ['webpack', 'browser', 'web', 'browserify', ['jam', 'main'], 'main'] } },
 
   // #8
-  { packageAlias: 'browser' },
+  { input: { packageAlias: 'browser' } },
 
   // #9
-  { unsafeCache: [/foo/] },
+  { input: { unsafeCache: [/foo/] } },
 
   // #10
-  { unsafeCache: /foo/ },
+  { input: { unsafeCache: /foo/ } },
 
   // #11
-  { unsafeCache: true },
+  { input: { unsafeCache: true } },
+
+  // #12 (Ok when rule disabled)
+  {
+    input: {
+      root: [
+        // These roots have items in them that nameclash with node_module packages
+        path.join(__dirname, './test-dir-for-resolve-root'), // contains "babel-cli.js"
+        path.join(__dirname, './test-dir-for-resolve-root-2'), // contains "codecov/index.js"
+      ],
+    },
+    schema: schemaFn({ rules: { 'no-root-files-node-modules-nameclash': false } }),
+  },
 ]
 
 const invalidModuleConfigs = [
@@ -69,7 +82,24 @@ const invalidModuleConfigs = [
   {
     input: { unsafeCache: false }, // must have true
   },
+  // #7
+  {
+    input: {
+      root: [
+        // These roots have items in them that nameclash with node_module packages
+        path.join(__dirname, './test-dir-for-resolve-root'), // contains "babel-cli.js"
+        path.join(__dirname, './test-dir-for-resolve-root-2'), // contains "codecov/index.js"
+      ],
+    },
+    error: { type: 'path.noRootFilesNodeModulesNameClash' },
+  },
 ]
+
+const schema = schemaFn({
+  rules: {
+    'no-root-files-node-modules-nameclash': true,
+  },
+})
 
 describe('resolve', () => {
   allValid(validModuleConfigs, schema)

@@ -4,33 +4,43 @@ import { allValid, allInvalid } from '../../../test/utils'
 const validModuleConfigs = [
   // #0
   {
-    loaders: [
-      { test: 'foo', include: /src/, loader: 'babel' },
-    ],
+    input: {
+      loaders: [
+        { test: 'foo', include: /src/, loader: 'babel' },
+      ],
+    },
   },
   // #1
   {
-    loaders: [
-      { test: /\.less$/, loader: 'style-loader!css-loader!autoprefixer-loader!less-loader' },
-    ],
+    input: {
+      loaders: [
+        { test: /\.less$/, loader: 'style-loader!css-loader!autoprefixer-loader!less-loader' },
+      ],
+    },
   },
   // #2
   {
-    loaders: [
-      { test: /\.(?:eot|ttf|woff2?)$/, loaders: ['file-loader'] },
-    ],
+    input: {
+      loaders: [
+        { test: /\.(?:eot|ttf|woff2?)$/, loaders: ['file-loader'] },
+      ],
+    },
   },
   // #3
   {
-    loaders: [
-      { test: (absPath) => absPath && true, loaders: ['file-loader'] },
-    ],
+    input: {
+      loaders: [
+        { test: (absPath) => absPath && true, loaders: ['file-loader'] },
+      ],
+    },
   },
   // #4
   {
-    loaders: [
-      { test: /foo/, loaders: ['file-loader'] },
-    ],
+    input: {
+      loaders: [
+        { test: /foo/, loaders: ['file-loader'] },
+      ],
+    },
   },
 ]
 

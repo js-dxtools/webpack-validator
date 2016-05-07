@@ -4,14 +4,27 @@ import validate from '../../src/index'
  * For all supplied configs (array of objects), check that they are invalid given a schema.
  */
 export default (configs, schema) => {
-  // Set throw to true for debugging reasons
-  configs.forEach(({ input: invalidConfig, error: expectedError, throwError = false }, n) => {
+  configs.forEach(({
+    // The config object to be tested
+    input: invalidConfig,
+    // The expected error
+    // Checks are possible on joi error `path`, `type` and `message` properties
+    error: expectedError,
+    // For debugging reasons: throw the error to inspect its toString output
+    throwError = false,
+    // Override the schema in order to test for non-default rule configurations
+    schema: schemaOverride,
+  }, n) => {
     it(`invalid #${n} should be invalid`, () => {
       if (!invalidConfig) {
         throw new Error('Pass data as `input` property')
       }
 
-      const result = validate(invalidConfig, schema, { returnValidation: true })
+      const result = validate(invalidConfig, {
+        schema: schemaOverride || schema,
+        returnValidation: true,
+      })
+
       assert(result.error)
       const { error } = result
 

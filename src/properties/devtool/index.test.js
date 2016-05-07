@@ -3,13 +3,19 @@ import { allValid, allInvalid } from '../../../test/utils'
 
 const validModuleConfigs = [
   // #0
-  'eval',
-  '#@eval',
-  '#cheap-module-eval-source-map',
-  'hidden-source-map',
-  'inline-source-map',
-  'eval-source-map',
-  'cheap-source-map',
+  { input: 'eval' },
+  // #1
+  { input: '#@eval' },
+  // #2
+  { input: '#cheap-module-eval-source-map' },
+  // #3
+  { input: 'hidden-source-map' },
+  // #4
+  { input: 'inline-source-map' },
+  // #5
+  { input: 'eval-source-map' },
+  // #6
+  { input: 'cheap-source-map' },
 ]
 
 const invalidModuleConfigs = [

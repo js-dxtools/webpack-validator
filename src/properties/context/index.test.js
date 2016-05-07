@@ -3,13 +3,13 @@ import { allValid, allInvalid } from '../../../test/utils'
 
 const validModuleConfigs = [
   // #0
-  '/home/jwerner/foo/entry.js', // Absolute
+  { input: __dirname }, // Absolute
 ]
 
 const invalidModuleConfigs = [
   // #0
   // Relative
-  { input: './entry.js', error: { message: '"value" must be an absolute path' } },
+  { input: './entry.js', error: { type: 'path.absolute' } },
 
   // #1
   { input: 1, error: { message: '"value" must be a string' } },
