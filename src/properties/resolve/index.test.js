@@ -89,6 +89,8 @@ const invalidModuleConfigs = [
         // These roots have items in them that nameclash with node_module packages
         path.join(__dirname, './test-dir-for-resolve-root'), // contains "babel-cli.js"
         path.join(__dirname, './test-dir-for-resolve-root-2'), // contains "codecov/index.js"
+        // contains "node_modules", will be skipped
+        path.join(__dirname, './test-dir-for-resolve-root-3/node_modules'),
       ],
     },
     error: { type: 'path.noRootFilesNodeModulesNameClash' },

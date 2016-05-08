@@ -1,5 +1,6 @@
 import sinon from 'sinon'
 import configs from '../test/passing-configs'
+import failingConfigs from '../test/failing-configs'
 import validate, { Joi } from './'
 
 describe('.', () => {
@@ -33,16 +34,15 @@ describe('.', () => {
     })
   })
 
-  it('for an invalid config the joi validation result is printed to console.error and ' +
-     'the process exits with exit code 1', () => {
-    const invalidConfig = { resolvee: 'bar' }
-    validate(invalidConfig)
+  failingConfigs.forEach(({ config, name }) => {
+    it(`throws for ${name}`, () => {
+      validate(config)
+      // The error message should have been printed
+      assert(consoleErrorStub.callCount === 1)
 
-    // The error message should have been printed
-    assert(consoleErrorStub.callCount === 1)
-
-    // process.exit should have been called
-    assert(processExitStub.callCount === 1)
+      // process.exit should have been called
+      assert(processExitStub.callCount === 1)
+    })
   })
 
   it('should allow console output to be muted', () => {

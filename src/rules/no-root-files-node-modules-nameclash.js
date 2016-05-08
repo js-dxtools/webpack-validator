@@ -15,7 +15,13 @@ const calculateIntersection = (set1, set2) => new Set([...set1].filter(x => set2
 
 const basenameCached = _memoize(basename)
 
-const cachedBasenameLs = _memoize((dir) => new Set(ls(dir).map(basenameCached)))
+const cachedBasenameLs = _memoize((dir) => {
+  // TODO: Refactor this to use webpacks `modulesDirectories` somehow
+  const files = ls(`${dir}/*{.json,.js,.jsx,.ts}`)
+  const folders = ls('-d', `${dir}/*/`)
+  const both = [...files, ...folders]
+  return new Set(both.map(basenameCached))
+})
 
 const customJoi = Joi.extend({
   base: Joi.string(),
@@ -36,9 +42,13 @@ const customJoi = Joi.extend({
       name: 'noRootFilesNodeModulesNameClash',
 
       validate(params, path_, state, options) {
+        // If the supplied resolve.root path *is* a node_module folder, we'll continue
+        // The check doesn't make sense in that case
+        if (/node_modules$/.test(path_)) {
+          return null
+        }
         // For an initial iteration this node_module resolving is quite simplistic;
         // it just finds the app's root path and takes node_modules from there.
-
         const basenames = cachedBasenameLs(path_)
         const intersection = calculateIntersection(nodeModules, basenames)
         if (intersection.size > 0) {
