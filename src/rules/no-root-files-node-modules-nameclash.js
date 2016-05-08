@@ -1,17 +1,16 @@
 import Joi from 'joi'
 import { ls } from 'shelljs'
 import _memoize from 'lodash/memoize'
-import path from 'path'
-import appRoot from 'app-root-path'
 import basename from 'basename'
-
-const nodeModuleFolder = path.resolve(appRoot.toString(), 'node_modules')
+import findNodeModules from 'find-node-modules'
 
 // It's not super clean to mock this here, but i'm ok with this for now
-/* istanbul ignore next */
-const nodeModules = process.env.NODE_ENV === 'test'
-  ? ['codecov', 'babel-cli']
-  : new Set(ls(nodeModuleFolder))
+const getNodeModulesContents = _memoize((dir) => { // eslint-disable-line arrow-body-style
+  /* istanbul ignore next */
+  return process.env.NODE_ENV === 'test'
+    ? ['codecov', 'babel-cli']
+    : new Set(ls(dir))
+})
 
 /**
  * Helpers
@@ -53,7 +52,12 @@ const customJoi = Joi.extend({
           return null
         }
         // For an initial iteration this node_module resolving is quite simplistic;
-        // it just finds the app's root path and takes node_modules from there.
+        // it just takes the first node_module folder found looking upwards from the given root
+        const nodeModuleFolder = findNodeModules({ cwd: path_, relative: false })[0]
+        if (!nodeModuleFolder) {
+          return null
+        }
+        const nodeModules = getNodeModulesContents(nodeModuleFolder)
         const basenames = cachedBasenameLs(path_)
         const intersection = calculateIntersection(nodeModules, basenames)
         if (intersection.size > 0) {
