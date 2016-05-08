@@ -32,7 +32,7 @@ module.exports = {
 
   // Config for our build files
   output: {
-    path: root('dist'),
+    path: root('exists'),
     filename: '[name].bundle.js',
     sourceMapFilename: '[name].map',
     chunkFilename: '[id].chunk.js'

@@ -29,7 +29,7 @@ export const makeConfig = ({production}) => ({
       : ['webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr&reload=true', './configs.js'],
   },
   output: {
-    path: path.join(__dirname, 'public'),
+    path: path.join(__dirname, 'exists'),
     publicPath: '/public/',
     filename: 'bundle.js',
   },

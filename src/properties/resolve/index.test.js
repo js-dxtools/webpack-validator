@@ -2,6 +2,15 @@ import schemaFn from './index'
 import { allValid, allInvalid } from '../../../test/utils'
 import path from 'path'
 
+const problematicRootPaths = [
+  // These root paths have items in them that nameclash with node_module packages
+  // The `ls` results for these paths have been stubbed in test/setup.js
+  // The node_module contents have been stubbed out in rules/no-root-files-node-modules-nameclash
+  path.join(__dirname, './exists-with-babel-cli-js'), // contains "babel-cli.js"
+  path.join(__dirname, './exists-with-codecov-folder'), // contains "codecov/index.js"
+  // contains "node_modules", will be skipped
+  path.join(__dirname, './exists-with-node-modules/node_modules'),
+]
 const validModuleConfigs = [
   // #0
   { input: { alias: { foo: 'bar' } } },
@@ -10,16 +19,16 @@ const validModuleConfigs = [
   { input: { alias: { foo: 'bar' } } },
 
   // #2
-  { input: { root: __dirname } },
+  { input: { root: 'exists' } },
 
   // #3
-  { input: { root: [__dirname, __dirname] } },
+  { input: { root: ['exists', 'exists'] } },
 
   // #4
   { input: { modulesDirectories: ['node_modules', 'bower_foo'] } },
 
   // #5
-  { input: { fallback: [__dirname, __dirname] } },
+  { input: { fallback: ['exists', 'exists'] } },
 
   // #6
   { input: { extensions: ['', '.foo'] } },
@@ -42,11 +51,8 @@ const validModuleConfigs = [
   // #12 (Ok when rule disabled)
   {
     input: {
-      root: [
-        // These roots have items in them that nameclash with node_module packages
-        path.join(__dirname, './test-dir-for-resolve-root'), // contains "babel-cli.js"
-        path.join(__dirname, './test-dir-for-resolve-root-2'), // contains "codecov/index.js"
-      ],
+      // These won't throw however because we disabled the rule
+      root: problematicRootPaths,
     },
     schema: schemaFn({ rules: { 'no-root-files-node-modules-nameclash': false } }),
   },
@@ -65,14 +71,15 @@ const invalidModuleConfigs = [
 
   // #2
   {
-    // It exists (from cwd repo root), but is not absolute
-    input: { root: './src' },
+    // It exists but is not absolute
+    // file existence stubbed out in test/setup.js
+    input: { root: './exists' },
     schema: schemaFn({ rules: { 'no-root-files-node-modules-nameclash': false } }),
   },
 
   // #3
   {
-    input: { root: '/foo' }, // must exist
+    input: { root: '/does-not-exist' }, // must exist
   },
 
   // #4
@@ -92,13 +99,7 @@ const invalidModuleConfigs = [
   // #7
   {
     input: {
-      root: [
-        // These roots have items in them that nameclash with node_module packages
-        path.join(__dirname, './test-dir-for-resolve-root'), // contains "babel-cli.js"
-        path.join(__dirname, './test-dir-for-resolve-root-2'), // contains "codecov/index.js"
-        // contains "node_modules", will be skipped
-        path.join(__dirname, './test-dir-for-resolve-root-3/node_modules'),
-      ],
+      root: problematicRootPaths,
     },
     error: { type: 'path.noRootFilesNodeModulesNameClash' },
   },

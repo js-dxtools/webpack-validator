@@ -3,7 +3,7 @@ import { allValid, allInvalid } from '../../../test/utils'
 
 const validModuleConfigs = [
   // #0
-  { input: __dirname }, // Absolute
+  { input: 'exists' }, // Absolute
 ]
 
 const invalidModuleConfigs = [

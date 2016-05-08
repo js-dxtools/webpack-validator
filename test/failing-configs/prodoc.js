@@ -8,7 +8,9 @@ const path = require('path')
 module.exports = {
   target: 'web',
   resolve: {
-    root: path.join(__dirname, 'prodoc'),
+    // Will throw because babel-cli exists in mocked node_modules 
+    // (see rules/no-root-files-node-modules-nameclash at the top)
+    root: path.join(__dirname, 'exists-with-babel-cli-js'),
     extensions: ['', '.js', '.jsx', '.json'],
   },
 }

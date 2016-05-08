@@ -8,7 +8,7 @@ const validModuleConfigs = [
   // #1
   { input: { chunkFilename: 'foo' } },
   // #2
-  { input: { path: __dirname } },
+  { input: { path: 'exists' } },
   // #3
   { input: { publicPath: '/assets/' } },
   // #4
