@@ -1,7 +1,8 @@
 import Joi from 'joi'
 import shell from 'shelljs'
 
-const MESSAGE = 'Expected an absolute path that exists on the file system, but got "{{path}}".'
+const MESSAGE = '"{{path}}" should be an existing absolute path, ' +
+                'but I found the following problems: {{msg1}}{{msg2}}'
 
 export const JoiWithPath = Joi.extend({
   base: Joi.string(),
@@ -17,7 +18,14 @@ export const JoiWithPath = Joi.extend({
         const looksLikeAbsolutePath = /^(?!\.?\.\/).+$/.test(value)
         const directoryExists = shell.test('-d', value)
         if (!looksLikeAbsolutePath || !directoryExists) {
-          return this.createError('path.absolute', { path: value }, state, options)
+          return this.createError('path.absolute', {
+            path: value,
+            msg1: !looksLikeAbsolutePath
+              ? 'The supplied string does not look like an absolute path ' +
+                '(it does not match the regex /^(?!\.?\.\/).+$/). ' : '',
+            msg2: !directoryExists
+              ? 'The supplied path does not exist on the file system.' : '',
+          }, state, options)
         }
         return null // Everything is OK
       },

@@ -65,7 +65,14 @@ const invalidModuleConfigs = [
 
   // #2
   {
-    input: { root: './foo' }, // must be absolute
+    // It exists (from cwd repo root), but is not absolute
+    input: { root: './src' },
+    schema: schemaFn({ rules: { 'no-root-files-node-modules-nameclash': false } }),
+  },
+
+  // #3
+  {
+    input: { root: '/foo' }, // must exist
   },
 
   // #4
