@@ -84,7 +84,7 @@ You opt in/out of rules by using the `rules` option:
 ```
 module.exports = validate(config, {
   rules: {
-    'no-root-files-node-module-nameclash': false,
+    'no-root-files-node-modules-nameclash': false,
   },
 )
 ```
