@@ -28,7 +28,10 @@ export default Joi.object({
   filename: notAbsolutePath,
   watchOptions: watchOptionsSchema,
   hot: Joi.boolean(),
-  stats: Joi.object(),
+  stats: Joi.alternatives().try([
+    Joi.object(),
+    Joi.string().valid(['none', 'errors-only', 'minimal', 'normal', 'verbose']),
+  ]),
   noInfo: Joi.boolean(),
   proxy: [
     Joi.object(),

@@ -54,16 +54,26 @@ const validModuleConfigs = [
   // #24
   { stats: {} },
   // #25
-  { noInfo: true },
+  { stats: 'none' },
   // #26
-  { proxy: {} },
+  { stats: 'errors-only' },
   // #27
-  { proxy: 'http://proxy.url/' },
+  { stats: 'minimal' },
   // #28
-  { proxy: [] },
+  { stats: 'normal' },
   // #29
-  { staticOptions: {} },
+  { stats: 'verbose' },
   // #30
+  { noInfo: true },
+  // #31
+  { proxy: {} },
+  // #32
+  { proxy: 'http://proxy.url/' },
+  // #33
+  { proxy: [] },
+  // #34
+  { staticOptions: {} },
+  // #35
   { headers: {} },
 ]
 
@@ -77,6 +87,8 @@ const invalidModuleConfigs = [
   // #3
   { input: { stats: true } },
   // #4
+  { input: { stats: 'foobar' } },
+  // #5
   { input: { proxy: true } },
 ]
 
