@@ -32,48 +32,50 @@ const validModuleConfigs = [
   // #13
   { historyApiFallback: true },
   // #14
-  { compress: true },
+  { historyApiFallback: { index: '/foo-app/' } },
   // #15
-  { port: 3000 },
+  { compress: true },
   // #16
-  { public: 'localhost' },
+  { port: 3000 },
   // #17
-  { host: '0.0.0.0' },
+  { public: 'localhost' },
   // #18
-  { publicPath: '/public/path/' },
+  { host: '0.0.0.0' },
   // #19
-  { publicPath: 'public/path/' },
+  { publicPath: '/public/path/' },
   // #20
-  { outputPath: '/' },
+  { publicPath: 'public/path/' },
   // #21
-  { filename: 'bundle.js' },
+  { outputPath: '/' },
   // #22
-  { watchOptions: {} },
+  { filename: 'bundle.js' },
   // #23
-  { hot: true },
+  { watchOptions: {} },
   // #24
-  { stats: {} },
+  { hot: true },
   // #25
-  { stats: 'none' },
+  { stats: {} },
   // #26
-  { stats: 'errors-only' },
+  { stats: 'none' },
   // #27
-  { stats: 'minimal' },
+  { stats: 'errors-only' },
   // #28
-  { stats: 'normal' },
+  { stats: 'minimal' },
   // #29
-  { stats: 'verbose' },
+  { stats: 'normal' },
   // #30
-  { noInfo: true },
+  { stats: 'verbose' },
   // #31
-  { proxy: {} },
+  { noInfo: true },
   // #32
-  { proxy: 'http://proxy.url/' },
+  { proxy: {} },
   // #33
-  { proxy: [] },
+  { proxy: 'http://proxy.url/' },
   // #34
-  { staticOptions: {} },
+  { proxy: [] },
   // #35
+  { staticOptions: {} },
+  // #36
   { headers: {} },
 ]
 
