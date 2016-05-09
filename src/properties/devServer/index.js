@@ -18,7 +18,10 @@ export default Joi.object({
     Joi.array(),
     Joi.string(),
   ],
-  historyApiFallback: Joi.boolean(),
+  historyApiFallback: Joi.alternatives().try([
+    Joi.object(),
+    Joi.boolean(),
+  ]),
   compress: Joi.boolean(),
   port: Joi.number(),
   public: Joi.string(),
