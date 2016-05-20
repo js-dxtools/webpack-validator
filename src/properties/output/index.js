@@ -19,7 +19,7 @@ export default Joi.object({
   jsonpFunction: Joi.string(),
   hotUpdateFunction: Joi.string(),
   pathinfo: Joi.bool(),
-  library: notAbsolutePath,
+  library: [notAbsolutePath, Joi.array().items(Joi.string())],
   libraryTarget: Joi.string().valid(['var', 'this', 'commonjs', 'commonjs2', 'amd', 'umd']),
   umdNamedDefine: Joi.bool(),
   sourcePrefix: Joi.string(),
