@@ -4,7 +4,10 @@ import { notAbsolutePath, absolutePath, urlPart } from '../../types'
 export default Joi.object({
   filename: notAbsolutePath,
   path: absolutePath,
-  publicPath: urlPart,
+  publicPath: Joi.alternatives().try([
+    urlPart,
+    Joi.string().valid(''),
+  ]),
   chunkFilename: notAbsolutePath,
   sourceMapFilename: notAbsolutePath,
   devtoolModuleFilenameTemplate: [notAbsolutePath, Joi.func()],
