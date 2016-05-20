@@ -2,7 +2,6 @@ import schema from './index'
 import { allValid, allInvalid } from '../../../test/utils'
 
 const validModuleConfigs = [
-  // #0
   {
     input: [
       () => {},
@@ -12,7 +11,6 @@ const validModuleConfigs = [
 ]
 
 const invalidModuleConfigs = [
-  // #0
   { input: 1, error: { } },
 ]
 

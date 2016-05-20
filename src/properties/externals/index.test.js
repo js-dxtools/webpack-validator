@@ -2,14 +2,10 @@ import schema, { EXTERNALS_MESSAGE } from './index'
 import { allValid, allInvalid } from '../../../test/utils'
 
 const validModuleConfigs = [
-  // #0
   { input: 'dependency' },
-
-  // #1
   { input: ['dependency'] },
-
-  // #2 ( from https://webpack.github.io/docs/configuration.html#externals )
   {
+    // from https://webpack.github.io/docs/configuration.html#externals )
     input: {
       a: false,
       b: true,
@@ -17,8 +13,6 @@ const validModuleConfigs = [
       './d': 'var d',
     },
   },
-
-  // #3 ( from real life )
   {
     input: [
       {
@@ -32,16 +26,11 @@ const validModuleConfigs = [
       },
     ],
   },
-
-  // #4
   { input: /dependency/ },
-
-  // #5
   { input: (a, b, c) => { } }, // eslint-disable-line
 ]
 
 const invalidModuleConfigs = [
-  // #0
   {
     input: {
       a: ['foo'],
@@ -51,8 +40,6 @@ const invalidModuleConfigs = [
     },
     error: { message: `"value" ${EXTERNALS_MESSAGE}` },
   },
-
-  // #1
   {
     input: [{
       a: ['foo'],
@@ -62,16 +49,12 @@ const invalidModuleConfigs = [
     }],
     error: { message: `"value" ${EXTERNALS_MESSAGE}` },
   },
-
-  // #2
   {
     input: 1,
     error: { message: `"value" ${EXTERNALS_MESSAGE}` },
   },
-
-  // #3
-  // Only 3-arity allowed
   {
+    // Only 3-arity allowed
     input: (a, b, c, d) => { }, // eslint-disable-line
     error: { message: `"value" ${EXTERNALS_MESSAGE}` },
   },

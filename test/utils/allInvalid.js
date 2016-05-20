@@ -1,4 +1,6 @@
 import validate from '../../src/index'
+import chalk from 'chalk'
+import util from 'util'
 
 /**
  * For all supplied configs (array of objects), check that they are invalid given a schema.
@@ -14,8 +16,8 @@ export default (configs, schema) => {
     throwError = false,
     // Override the schema in order to test for non-default rule configurations
     schema: schemaOverride,
-  }, n) => {
-    it(`invalid #${n} should be invalid`, () => {
+  }) => {
+    it(`: ${chalk.gray(util.inspect(invalidConfig, false, null))} should be invalid`, () => {
       if (!invalidConfig) {
         throw new Error('Pass data as `input` property')
       }

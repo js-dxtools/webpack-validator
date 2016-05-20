@@ -1,10 +1,12 @@
 import validate from '../../src/index'
+import chalk from 'chalk'
+import util from 'util'
 
 /**
  * For all supplied configs (array of objects), check that they are valid given a schema.
  */
 export default (configs, schema) => {
-  configs.forEach((input, n) => {
+  configs.forEach((input) => {
     const { input: validConfig, schema: schemaOverride } = input
     if (!validConfig) {
       throw new Error(
@@ -13,7 +15,7 @@ export default (configs, schema) => {
       )
     }
 
-    it(`valid #${n} should be valid`, () => {
+    it(`: ${chalk.gray(util.inspect(validConfig, false, null))} should be valid`, () => {
       const result = validate(validConfig, {
         schema: schemaOverride || schema,
         returnValidation: true,

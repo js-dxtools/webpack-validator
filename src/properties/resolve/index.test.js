@@ -12,43 +12,18 @@ const problematicRootPaths = [
   path.join(__dirname, './exists-with-node-modules/node_modules'),
 ]
 const validModuleConfigs = [
-  // #0
   { input: { alias: { foo: 'bar' } } },
-
-  // #1
   { input: { alias: { foo: 'bar' } } },
-
-  // #2
   { input: { root: 'exists' } },
-
-  // #3
   { input: { root: ['exists', 'exists'] } },
-
-  // #4
   { input: { modulesDirectories: ['node_modules', 'bower_foo'] } },
-
-  // #5
   { input: { fallback: ['exists', 'exists'] } },
-
-  // #6
   { input: { extensions: ['', '.foo'] } },
-
-  // #7
   { input: { packageMains: ['webpack', 'browser', 'web', 'browserify', ['jam', 'main'], 'main'] } },
-
-  // #8
   { input: { packageAlias: 'browser' } },
-
-  // #9
   { input: { unsafeCache: [/foo/] } },
-
-  // #10
   { input: { unsafeCache: /foo/ } },
-
-  // #11
   { input: { unsafeCache: true } },
-
-  // #12 (Ok when rule disabled)
   {
     input: {
       // These won't throw however because we disabled the rule
@@ -59,48 +34,20 @@ const validModuleConfigs = [
 ]
 
 const invalidModuleConfigs = [
-  // #0
-  {
-    input: { alias: { foo: 1 } },
-  },
-
-  // #1
-  {
-    input: { alias: ['foo'] },
-  },
-
-  // #2
+  { input: { alias: { foo: 1 } } },
+  { input: { alias: ['foo'] } },
   {
     // It exists but is not absolute
     // file existence stubbed out in test/setup.js
     input: { root: './exists' },
     schema: schemaFn({ rules: { 'no-root-files-node-modules-nameclash': false } }),
   },
-
-  // #3
+  { input: { root: '/does-not-exist' } }, // must exist
+  { input: { modulesDirectories: 'node_modules' } },
+  { input: { extensions: ['', 'bar'] } }, // must have leading dot
+  { input: { unsafeCache: false } }, // must have true
   {
-    input: { root: '/does-not-exist' }, // must exist
-  },
-
-  // #4
-  {
-    input: { modulesDirectories: 'node_modules' },
-  },
-
-  // #5
-  {
-    input: { extensions: ['', 'bar'] }, // must have leading dot
-  },
-
-  // #6
-  {
-    input: { unsafeCache: false }, // must have true
-  },
-  // #7
-  {
-    input: {
-      root: problematicRootPaths,
-    },
+    input: { root: problematicRootPaths },
     error: { type: 'path.noRootFilesNodeModulesNameClash' },
   },
 ]

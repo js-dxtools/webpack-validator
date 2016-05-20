@@ -2,12 +2,10 @@ import schema from './index'
 import { allValid, allInvalid } from '../../../test/utils'
 
 const validConfigs = [
-  // #0
   { input: 'web' },
 ]
 
 const invalidConfigs = [
-  // #0
   {
     input: 'foo',
     error: {
