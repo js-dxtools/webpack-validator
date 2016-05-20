@@ -39,7 +39,8 @@ const validModuleConfigs = [
   { crossOriginLoading: 'anonymous' },
   // #17
   { hashDigestLength: 6 }, // undocumented
-
+  // #18
+  { publicPath: '' },
 ]
 
 const invalidModuleConfigs = [
