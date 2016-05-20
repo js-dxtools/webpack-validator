@@ -1,46 +1,46 @@
 import schema from './index'
 import { allValid, allInvalid } from '../../../test/utils'
-import { notAbsolutePath, absolutePath, urlPart } from '../../types'
+import { notAbsolutePath, urlPart } from '../../types'
 
 const validModuleConfigs = [
   // #0
-  { filename: 'foo' },
+  { input: { filename: 'foo' } },
   // #1
-  { chunkFilename: 'foo' },
+  { input: { chunkFilename: 'foo' } },
   // #2
-  { path: 'foo/bar' },
+  { input: { path: 'exists' } },
   // #3
-  { path: '/foo/bar' },
+  { input: { publicPath: '/assets/' } },
   // #4
-  { publicPath: '/assets/' },
+  { input: { publicPath: 'http://cdn.example.com/assets/[hash]/' } },
   // #5
-  { publicPath: 'http://cdn.example.com/assets/[hash]/' },
+  { input: { devtoolModuleFilenameTemplate: 'webpack:///[resourcePath]?[hash]' } },
   // #6
-  { devtoolModuleFilenameTemplate: 'webpack:///[resourcePath]?[hash]' },
+  { input: { devtoolModuleFilenameTemplate: () => {} } },
   // #7
-  { devtoolModuleFilenameTemplate: () => {} },
+  { input: { hotUpdateChunkFilename: '[id].[hash].hot-update.js' } },
   // #8
-  { hotUpdateChunkFilename: '[id].[hash].hot-update.js' },
+  { input: { hotUpdateMainFilename: '[hash].hot-update.json' } },
   // #9
-  { hotUpdateMainFilename: '[hash].hot-update.json' },
+  { input: { jsonpFunction: 'webpackJsonp' } },
   // #10
-  { jsonpFunction: 'webpackJsonp' },
+  { input: { hotUpdateFunction: 'webpackHotUpdate' } },
   // #11
-  { hotUpdateFunction: 'webpackHotUpdate' },
+  { input: { pathinfo: false } },
   // #12
-  { pathinfo: false },
+  { input: { library: 'redux' } },
   // #13
-  { library: 'redux' },
+  { input: { libraryTarget: 'commonjs' } },
   // #14
-  { libraryTarget: 'commonjs' },
+  { input: { crossOriginLoading: false } },
   // #15
-  { crossOriginLoading: false },
+  { input: { crossOriginLoading: 'anonymous' } },
   // #16
-  { crossOriginLoading: 'anonymous' },
+  { input: { crossOriginLoading: 'anonymous' } },
   // #17
-  { hashDigestLength: 6 }, // undocumented
+  { input: { hashDigestLength: 6 } }, // undocumented
   // #18
-  { publicPath: '' },
+  { input: { publicPath: '' } },
 ]
 
 const invalidModuleConfigs = [
@@ -63,7 +63,7 @@ const invalidModuleConfigs = [
     input: {
       path: './foo/bar',
     },
-    error: { message: `"path" ${absolutePath.message}` },
+    error: { type: 'path.absolute' },
   },
   // #3
   {

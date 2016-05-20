@@ -3,44 +3,48 @@ import { allValid, allInvalid } from '../../../test/utils'
 
 const validModuleConfigs = [
   // #0
-  'dependency',
+  { input: 'dependency' },
 
   // #1
-  ['dependency'],
+  { input: ['dependency'] },
 
   // #2 ( from https://webpack.github.io/docs/configuration.html#externals )
   {
-    a: false,
-    b: true,
-    './c': 'c',
-    './d': 'var d',
+    input: {
+      a: false,
+      b: true,
+      './c': 'c',
+      './d': 'var d',
+    },
   },
 
   // #3 ( from real life )
-  [
-    {
-      angular: 'angular',
-      'api-check': {
-        root: 'apiCheck',
-        amd: 'api-check',
-        commonjs2: 'api-check',
-        commonjs: 'api-check',
+  {
+    input: [
+      {
+        angular: 'angular',
+        'api-check': {
+          root: 'apiCheck',
+          amd: 'api-check',
+          commonjs2: 'api-check',
+          commonjs: 'api-check',
+        },
       },
-    },
-  ],
+    ],
+  },
 
   // #4
-  /dependency/,
+  { input: /dependency/ },
 
   // #5
-  (a, b, c) => { }, // eslint-disable-line
+  { input: (a, b, c) => { } }, // eslint-disable-line
 ]
 
 const invalidModuleConfigs = [
   // #0
   {
     input: {
-      a: 1,
+      a: ['foo'],
       b: true,
       './c': 'c',
       './d': 'var d',
@@ -51,7 +55,7 @@ const invalidModuleConfigs = [
   // #1
   {
     input: [{
-      a: 1,
+      a: ['foo'],
       b: true,
       './c': 'c',
       './d': 'var d',

@@ -4,79 +4,79 @@ import { urlPart } from '../../types'
 
 const validModuleConfigs = [
   // #0
-  { lazy: true },
+  { input: { lazy: true } },
   // #1
-  { inline: true },
+  { input: { inline: true } },
   // #2
-  { stdin: true },
+  { input: { stdin: true } },
   // #2
-  { open: true },
+  { input: { open: true } },
   // #4
-  { info: true },
+  { input: { info: true } },
   // #5
-  { quiet: true },
+  { input: { quiet: true } },
   // #6
-  { https: true },
+  { input: { https: true } },
   // #7
-  { key: '/path/to/key' },
+  { input: { key: '/path/to/key' } },
   // #8
-  { cert: 'path/to/cert' },
+  { input: { cert: 'path/to/cert' } },
   // #9
-  { cacert: 'path/to/cacert' },
+  { input: { cacert: 'path/to/cacert' } },
   // #10
-  { contentBase: '/content/base' },
+  { input: { contentBase: '/content/base' } },
   // #11
-  { contentBase: { target: '/content/base/' } },
+  { input: { contentBase: { target: '/content/base/' } } },
   // #12
-  { contentBase: ['/content/base/'] },
+  { input: { contentBase: ['/content/base/'] } },
   // #13
-  { historyApiFallback: true },
+  { input: { historyApiFallback: true } },
   // #14
-  { historyApiFallback: { index: '/foo-app/' } },
+  { input: { historyApiFallback: { index: '/foo-app/' } } },
   // #15
-  { compress: true },
+  { input: { compress: true } },
   // #16
-  { port: 3000 },
+  { input: { port: 3000 } },
   // #17
-  { public: 'localhost' },
+  { input: { public: 'localhost' } },
   // #18
-  { host: '0.0.0.0' },
+  { input: { host: '0.0.0.0' } },
   // #19
-  { publicPath: '/public/path/' },
+  { input: { publicPath: '/public/path/' } },
   // #20
-  { publicPath: 'public/path/' },
+  { input: { publicPath: 'public/path/' } },
   // #21
-  { outputPath: '/' },
+  { input: { outputPath: '/' } },
   // #22
-  { filename: 'bundle.js' },
+  { input: { filename: 'bundle.js' } },
   // #23
-  { watchOptions: {} },
+  { input: { watchOptions: {} } },
   // #24
-  { hot: true },
+  { input: { hot: true } },
   // #25
-  { stats: {} },
+  { input: { stats: {} } },
   // #26
-  { stats: 'none' },
+  { input: { stats: 'none' } },
   // #27
-  { stats: 'errors-only' },
+  { input: { stats: 'errors-only' } },
   // #28
-  { stats: 'minimal' },
+  { input: { stats: 'minimal' } },
   // #29
-  { stats: 'normal' },
+  { input: { stats: 'normal' } },
   // #30
-  { stats: 'verbose' },
+  { input: { stats: 'verbose' } },
   // #31
-  { noInfo: true },
+  { input: { noInfo: true } },
   // #32
-  { proxy: {} },
+  { input: { proxy: {} } },
   // #33
-  { proxy: 'http://proxy.url/' },
+  { input: { proxy: 'http://proxy.url/' } },
   // #34
-  { proxy: [] },
+  { input: { proxy: [] } },
   // #35
-  { staticOptions: {} },
+  { input: { staticOptions: {} } },
   // #36
-  { headers: {} },
+  { input: { headers: {} } },
 ]
 
 const invalidModuleConfigs = [
@@ -94,7 +94,7 @@ const invalidModuleConfigs = [
   { input: { proxy: true } },
 ]
 
-describe('output', () => {
+describe('devServer', () => {
   allValid(validModuleConfigs, schema)
   allInvalid(invalidModuleConfigs, schema)
 })

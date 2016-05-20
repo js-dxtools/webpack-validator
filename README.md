@@ -57,27 +57,39 @@ Now run webpack. Either everything is green and the build continues or `joi` wil
 #### CLI
 For CLI usage you probably want to install the tool globally (`npm install -g webpack-validator`) first. Then just run `webpack-validator <your-config>`.
 
-#### Customizing
+### Customizing
+#### Schema
 If you need to extend the schema, for example for custom top level properties or properties added by third party plugins like `eslint-loader` (which adds a toplevel `eslint` property), do it like this:
 
 ```js
 const validate = require('webpack-validator')
-const schema = require('webpack-validator').schema
+const Joi = require('webpack-validator').Joi
 
-// joi is installed as dependency of this package and will be available in node_modules
-// if you use npm 3. Otherwise install it explicitly.
-const Joi = require('joi')
-
-const yourSchema = schema.concat(Joi.object({
+// This joi schema will be `Joi.concat`-ed with the internal schema
+const yourSchemaExtension = Joi.object({
   // this would just allow the property and doesn't perform any additional validation
   eslint: Joi.any()
-}))
+})
 
 const config = { /* ... your webpack config */ }
 
-// Override default config by supplying your config as second parameter.
-module.exports = validate(config, yourSchema)
+module.exports = validate(config, { schemaExtension: yourSchemaExtension })
 ```
+
+#### Rules
+Some validations do more than just validating your data shape, they check for best practices and do "more" which you might want to opt out of / in to. This is an overview of the available rules (we just started with this, this list will grow :)):
+- **no-root-files-node-modules-nameclash** (default: true): this checks that files/folders that are found in directories specified via webpacks `resolve.root` option do not nameclash with `node_modules` packages. This prevents nasty path resolving bugs (for a motivating example, have a look at [this redux issue](https://github.com/reactjs/redux/issues/1681)).
+
+You opt in/out of rules by using the `rules` option:
+```
+module.exports = validate(config, {
+  rules: {
+    'no-root-files-node-modules-nameclash': false,
+  },
+)
+```
+
+**Note**: This is not yet implemented via cli options, the default rules will apply in that case.
 
 #### Quiet Mode
 If you want to mute console output apart from errors, set `--quiet` (`-q`) or `validate(config, yourSchema, {quiet: true})`. This is particularly useful if you are using webpack `--json` as you'll want to avoid writing additional text to the JSON output.

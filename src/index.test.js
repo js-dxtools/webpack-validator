@@ -1,6 +1,7 @@
 import sinon from 'sinon'
 import configs from '../test/passing-configs'
-import validate from './'
+import failingConfigs from '../test/failing-configs'
+import validate, { Joi } from './'
 
 describe('.', () => {
   let sandbox
@@ -33,20 +34,19 @@ describe('.', () => {
     })
   })
 
-  it('for an invalid config the joi validation result is printed to console.error and ' +
-     'the process exits with exit code 1', () => {
-    const invalidConfig = { resolvee: 'bar' }
-    validate(invalidConfig)
+  failingConfigs.forEach(({ config, name }) => {
+    it(`throws for ${name}`, () => {
+      validate(config)
+      // The error message should have been printed
+      assert(consoleErrorStub.callCount === 1)
 
-    // The error message should have been printed
-    assert(consoleErrorStub.callCount === 1)
-
-    // process.exit should have been called
-    assert(processExitStub.callCount === 1)
+      // process.exit should have been called
+      assert(processExitStub.callCount === 1)
+    })
   })
 
   it('should allow console output to be muted', () => {
-    validate({}, {}, { quiet: true })
+    validate({}, { quiet: true })
 
     // The success message should not have been printed
     assert(consoleInfoStub.callCount === 0)
@@ -57,5 +57,39 @@ describe('.', () => {
     }
     // process.exit should not have been called
     assert(processExitStub.callCount === 0)
+  })
+
+  const fooSchema = Joi.object({ foo: Joi.string() })
+
+  it('should allow the schema to be extended', () => {
+    const result1 = validate({ foo: 'bar' }, { returnValidation: true })
+    const result2 = validate({ foo: 'bar' }, {
+      returnValidation: true,
+      schemaExtension: fooSchema,
+    })
+    assert(result1.error)
+    assert(!result2.error)
+  })
+
+  it('should allow the schema to be overridden', () => {
+    const result = validate({ foo: 'bar' }, {
+      schema: fooSchema,
+      returnValidation: true,
+    })
+    assert(!result.error)
+  })
+
+  it('should allow overriding rules', () => {
+    const result = validate({ foo: 'bar' }, {
+      rules: {
+        foo: true,
+        'no-root-files-node-modules-nameclash': false,
+      },
+      returnValidation: true,
+    })
+    assert(result.schemaOptions.rules.foo)
+    assert(result.schemaOptions.rules['no-root-files-node-modules-nameclash'] === false)
+    // Will be merged with default rules, so length def greater then 1
+    assert(Object.keys(result.schemaOptions.rules).length > 1)
   })
 })

@@ -3,7 +3,7 @@ import { allValid, allInvalid } from '../../../test/utils'
 
 const validConfigs = [
   // #0
-  'web',
+  { input: 'web' },
 ]
 
 const invalidConfigs = [

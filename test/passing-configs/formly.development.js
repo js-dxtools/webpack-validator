@@ -20,7 +20,7 @@ function getConfig() {
 
 function getCommonConfig() {
   return {
-    context: here(),
+    context: 'exists',
     entry: './configs.js',
     output: {
       libraryTarget: 'umd',

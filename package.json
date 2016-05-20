@@ -13,13 +13,10 @@
     "build": "babel --ignore *.test.js -d dist src",
     "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "lint": "eslint .",
-    "cover": "nyc --reporter=lcov --reporter=text --reporter=html mocha src/**/*.test.js",
+    "cover": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text --reporter=html mocha \"src/**/*.test.js\"",
     "report-coverage": "cat ./coverage/lcov.info | node_modules/.bin/codecov",
-    "test": "mocha \"src/**/*.test.js\"",
+    "test": "cross-env NODE_ENV=test mocha \"src/**/*.test.js\"",
     "watch:test": "npm run test -- -w",
-    "release": "npm run build && with-package git commit -am pkg.version && with-package git tag pkg.version && git push && npm publish && git push --tags",
-    "release:beta": "npm run release && npm run tag:beta",
-    "tag:beta": "with-package npm dist-tag add pkg.name@pkg.version beta",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
@@ -41,12 +38,16 @@
     ]
   },
   "dependencies": {
+    "basename": "0.1.2",
     "chalk": "1.1.3",
     "commander": "2.9.0",
-    "joi": "8.0.5",
+    "cross-env": "^1.0.7",
+    "find-node-modules": "^1.0.1",
+    "joi": "9.0.0-0",
     "lodash": "4.11.1",
     "npmlog": "2.0.3",
-    "yargs": "4.7.1"
+    "yargs": "4.7.1",
+    "shelljs": "0.7.0"
   },
   "devDependencies": {
     "autoprefixer": "6.3.6",

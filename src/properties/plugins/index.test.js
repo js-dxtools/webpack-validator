@@ -3,10 +3,12 @@ import { allValid, allInvalid } from '../../../test/utils'
 
 const validModuleConfigs = [
   // #0
-  [
-    () => {},
-    {},
-  ],
+  {
+    input: [
+      () => {},
+      {},
+    ],
+  },
 ]
 
 const invalidModuleConfigs = [

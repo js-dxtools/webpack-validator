@@ -3,14 +3,13 @@ import { allValid, allInvalid } from '../../../test/utils'
 
 const validModuleConfigs = [
   // #0
-  './entry.js',
+  { input: './entry.js' },
 
   // #1
-  ['./entry.js'],
+  { input: ['./entry.js'] },
 
   // #2
-  { foo: './entry.js', bar: ['./bar.js'] },
-
+  { input: { foo: './entry.js', bar: ['./bar.js'] } },
 ]
 
 const invalidModuleConfigs = [
