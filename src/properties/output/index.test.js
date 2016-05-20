@@ -30,16 +30,18 @@ const validModuleConfigs = [
   // #12
   { input: { library: 'redux' } },
   // #13
-  { input: { libraryTarget: 'commonjs' } },
+  { input: { library: ['redux', '[name]'] } },
   // #14
-  { input: { crossOriginLoading: false } },
+  { input: { libraryTarget: 'commonjs' } },
   // #15
-  { input: { crossOriginLoading: 'anonymous' } },
+  { input: { crossOriginLoading: false } },
   // #16
   { input: { crossOriginLoading: 'anonymous' } },
   // #17
-  { input: { hashDigestLength: 6 } }, // undocumented
+  { input: { crossOriginLoading: 'anonymous' } },
   // #18
+  { input: { hashDigestLength: 6 } }, // undocumented
+  // #19
   { input: { publicPath: '' } },
 ]
 
@@ -107,6 +109,15 @@ const invalidModuleConfigs = [
     },
     error: { message: '"fileName" is not allowed' },
   },
+  // #8
+  {
+    input: {
+      fileName: 'foo',
+    },
+    error: { message: '"fileName" is not allowed' },
+  },
+  // #9
+  { input: { library: ['redux', 1] } },
 
 ]
 
