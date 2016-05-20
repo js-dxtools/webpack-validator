@@ -13,9 +13,9 @@
     "build": "babel --ignore *.test.js -d dist src",
     "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "lint": "eslint .",
-    "cover": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text --reporter=html mocha src/**/*.test.js",
+    "cover": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text --reporter=html mocha \"src/**/*.test.js\"",
     "report-coverage": "cat ./coverage/lcov.info | node_modules/.bin/codecov",
-    "test": "cross-env NODE_ENV=test mocha src/**/*.test.js",
+    "test": "cross-env NODE_ENV=test mocha \"src/**/*.test.js\"",
     "watch:test": "npm run test -- -w",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },

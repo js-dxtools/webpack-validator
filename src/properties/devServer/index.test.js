@@ -60,7 +60,7 @@ const validModuleConfigs = [
   // #27
   { input: { stats: 'errors-only' } },
   // #28
-  { input: { input: { stats: 'minimal' } } },
+  { input: { stats: 'minimal' } },
   // #29
   { input: { stats: 'normal' } },
   // #30
@@ -94,7 +94,7 @@ const invalidModuleConfigs = [
   { input: { proxy: true } },
 ]
 
-describe('output', () => {
+describe('devServer', () => {
   allValid(validModuleConfigs, schema)
   allInvalid(invalidModuleConfigs, schema)
 })
