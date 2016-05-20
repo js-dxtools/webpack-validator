@@ -15,7 +15,7 @@ const options = [
 const DEVTOOL_REGEX = new RegExp(
   '^' +               // start of string
   '(#@|@|#)?' +       // maybe one of the pragmas
-  `(${options.join('|')})` // one of the options
+  `(${options.join('$|')})` // one of the options
 )
 
 export default Joi
