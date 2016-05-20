@@ -2,7 +2,6 @@ import moduleSchema, { CONDITION_MESSAGE, LOADERS_QUERY_MESSAGE } from './index'
 import { allValid, allInvalid } from '../../../test/utils'
 
 const validModuleConfigs = [
-  // #0
   {
     input: {
       loaders: [
@@ -10,7 +9,6 @@ const validModuleConfigs = [
       ],
     },
   },
-  // #1
   {
     input: {
       loaders: [
@@ -18,7 +16,6 @@ const validModuleConfigs = [
       ],
     },
   },
-  // #2
   {
     input: {
       loaders: [
@@ -26,7 +23,6 @@ const validModuleConfigs = [
       ],
     },
   },
-  // #3
   {
     input: {
       loaders: [
@@ -34,7 +30,6 @@ const validModuleConfigs = [
       ],
     },
   },
-  // #4
   {
     input: {
       loaders: [
@@ -45,7 +40,6 @@ const validModuleConfigs = [
 ]
 
 const invalidModuleConfigs = [
-  // #0
   {
     input: {
       loaders: [
@@ -54,7 +48,6 @@ const invalidModuleConfigs = [
     },
     error: { message: '"test" is required' },
   },
-  // #1
   {
     input: {
       loaders: [
@@ -63,7 +56,6 @@ const invalidModuleConfigs = [
     },
     error: { message: `"include" ${CONDITION_MESSAGE}` },
   },
-  // #2
   {
     input: {
       loaders: [
@@ -72,7 +64,6 @@ const invalidModuleConfigs = [
     },
     error: { message: '"loaders" must be an array' },
   },
-  // #3
   {
     input: {
       loaders: [
@@ -81,21 +72,18 @@ const invalidModuleConfigs = [
     },
     error: { message: '"0" must be a string', path: 'loaders.0.loaders.0' },
   },
-  // #4
   {
     input: {
       loaders: [{ test: /\.(?:eot|ttf|woff2?)$/, loader: ['file-loader'] }],
     },
     error: { message: '"loader" must be a string' },
   },
-  // #5
   {
     input: {
       loaders: [{ test: /\.(?:eot|ttf|woff2?)$/, loaders: ['file-loader'], loader: 'style' }],
     },
     error: { message: '"value" contains a conflict between exclusive peers [loaders, loader]' },
   },
-  // #6
   {
     input: {
       loaders: [{ test: (foo, bar) => `${foo}-${bar}`, loaders: ['file-loader'] }],
@@ -103,7 +91,6 @@ const invalidModuleConfigs = [
     // Only 1-arity functions are allowed
     error: { message: `"test" ${CONDITION_MESSAGE}` },
   },
-  // #7
   {
     input: {
       loaders: [{ query: { foo: 'bar' }, loaders: ['file-loader'], test: /foo/ }],
@@ -111,14 +98,12 @@ const invalidModuleConfigs = [
     // query can only be supplied when `loader` property is supplied
     error: { message: `"value" ${LOADERS_QUERY_MESSAGE}` },
   },
-  // #8
   {
     input: {
       loaders: [{ test: /foo/ }],
     },
     error: { message: '"value" must contain at least one of [loaders, loader]' },
   },
-  // #9
   {
     input: {
       loaders: [{ test: /foo/, loader: 'foo', query: 'query' }],
