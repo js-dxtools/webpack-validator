@@ -1,5 +1,6 @@
 const path = require('path')
 const validate = require('../')
+const argv = require('yargs').argv
 
 module.exports = function validateConfig(webpackConfigFile, quiet) {
   if (!quiet) console.log(`Reading: ${webpackConfigFile}`)
@@ -10,7 +11,8 @@ module.exports = function validateConfig(webpackConfigFile, quiet) {
   ]
 
   const config = require(webpackConfigPath)
-  return validate(config, validate.schema, {
+  const configToValidate = typeof config === 'function' ? config(argv.env, argv) : config
+  return validate(configToValidate, validate.schema, {
     returnValidation: true,
     quiet,
   })
