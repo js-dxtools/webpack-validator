@@ -79,6 +79,8 @@ module.exports = validate(config, { schemaExtension: yourSchemaExtension })
 #### Rules
 Some validations do more than just validating your data shape, they check for best practices and do "more" which you might want to opt out of / in to. This is an overview of the available rules (we just started with this, this list will grow :)):
 - **no-root-files-node-modules-nameclash** (default: true): this checks that files/folders that are found in directories specified via webpacks `resolve.root` option do not nameclash with `node_modules` packages. This prevents nasty path resolving bugs (for a motivating example, have a look at [this redux issue](https://github.com/reactjs/redux/issues/1681)).
+- **loader-enforce-include-or-exclude** (default: false): enforce that [loader](https://webpack.github.io/docs/configuration.html#module-loaders) objects use `include` or/and `exclude`, throw when neither is supplied. Without supplying one of these conditions it is too easy to process too many files, for example your `node_modules` folder.
+- **loader-prefer-include** (default: false): enforce that [loader](https://webpack.github.io/docs/configuration.html#module-loaders) objects use `include` and not `exclude`. `exclude` makes it easy to match too many files, which might inadvertently slow your build down.
 
 You opt in/out of rules by using the `rules` option:
 ```

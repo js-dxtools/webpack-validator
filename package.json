@@ -41,13 +41,14 @@
     "basename": "0.1.2",
     "chalk": "1.1.3",
     "commander": "2.9.0",
+    "common-tags": "0.1.1",
     "cross-env": "^1.0.7",
     "find-node-modules": "^1.0.1",
     "joi": "9.0.0-0",
     "lodash": "4.11.1",
     "npmlog": "2.0.3",
-    "yargs": "4.7.1",
-    "shelljs": "0.7.0"
+    "shelljs": "0.7.0",
+    "yargs": "4.7.1"
   },
   "devDependencies": {
     "autoprefixer": "6.3.6",
