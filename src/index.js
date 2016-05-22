@@ -1,6 +1,6 @@
 import Joi from 'joi'
 import chalk from 'chalk'
-import moduleSchema from './properties/module'
+import moduleSchemaFn from './properties/module'
 import entrySchema from './properties/entry'
 import contextSchema from './properties/context'
 import devtoolSchema from './properties/devtool'
@@ -19,6 +19,7 @@ sh.config.silent = true
 
 const makeSchema = (schemaOptions, schemaExtension) => {
   const resolveSchema = resolveSchemaFn(schemaOptions)
+  const moduleSchema = moduleSchemaFn(schemaOptions)
 
   const schema = Joi.object({
     amd: Joi.object(),
@@ -59,6 +60,8 @@ const makeSchema = (schemaOptions, schemaExtension) => {
 const defaultSchemaOptions = {
   rules: {
     'no-root-files-node-modules-nameclash': true,
+    'loader-enforce-include-or-exclude': false,
+    'loader-prefer-include': false,
   },
 }
 

@@ -1,4 +1,4 @@
-import moduleSchema, { CONDITION_MESSAGE, LOADERS_QUERY_MESSAGE } from './index'
+import schemaFn, { CONDITION_MESSAGE, LOADERS_QUERY_MESSAGE } from './index'
 import { allValid, allInvalid } from '../../../test/utils'
 
 const validModuleConfigs = [
@@ -36,6 +36,20 @@ const validModuleConfigs = [
         { test: /foo/, loaders: ['file-loader'] },
       ],
     },
+  },
+  {
+    // should allow both `include` and `exclude with the rule 'loader-enforce-include-or-exclude'
+    input: {
+      loaders: [{ test: /foo/, loader: 'foo', include: 'foo', exclude: 'bar' }],
+    },
+    schema: schemaFn({ rules: { 'loader-enforce-include-or-exclude': true } }),
+  },
+  {
+    // should be fine with `include` with rule 'loader-enforce-include-or-exclude'
+    input: {
+      loaders: [{ test: /foo/, loader: 'foo', include: 'foo' }],
+    },
+    schema: schemaFn({ rules: { 'loader-prefer-include': true } }),
   },
 ]
 
@@ -110,7 +124,40 @@ const invalidModuleConfigs = [
     },
     error: { message: '"query" must be an object' },
   },
+  {
+    // doesn't include `include`
+    input: {
+      loaders: [{ test: /foo/, loader: 'foo' }],
+    },
+    schema: schemaFn({ rules: { 'loader-prefer-include': true } }),
+  },
+  {
+    // includes `exclude` and `include`, should only use `include`
+    input: {
+      loaders: [{ test: /foo/, loader: 'foo', include: 'foo', exclude: 'bar' }],
+    },
+    schema: schemaFn({ rules: { 'loader-prefer-include': true } }),
+  },
+  {
+    // includes `exclude`, should prefer `include`
+    input: {
+      loaders: [{ test: /foo/, loader: 'foo', exclude: 'bar' }],
+    },
+    schema: schemaFn({ rules: { 'loader-prefer-include': true } }),
+  },
+  {
+    // should use either `include` or `exclude
+    input: {
+      loaders: [{ test: /foo/, loader: 'foo' }],
+    },
+    schema: schemaFn({ rules: { 'loader-enforce-include-or-exclude': true } }),
+  },
 ]
+
+const moduleSchema = schemaFn({
+  rules: {
+  },
+})
 
 describe('module', () => {
   allValid(validModuleConfigs, moduleSchema)

@@ -13,6 +13,18 @@
 ### Testing workflow
 Have a look at `test/README.md` to see how testing works. Run `npm run watch:test` while developing. Have fun! :)
 
+### Tips for working with Joi
+- Use `!!` at the beginning of your custom error string to get rid of the key at the beginning of the error message. Example:
+```js
+const ERROR_MSG = '!!A custom error message without a "key" in front of it'
+
+// Look at node_modules/joi/lib/language.js to know
+// which key to override in the options.language object
+const schema = Joi
+  .string()
+  .options({ language: { string: { base: ERROR_MSG } } })
+```
+
 ## Editor setup
 
 Please install [editorconfig plugin](http://editorconfig.org/#download) for your preferred editor.
