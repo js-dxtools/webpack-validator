@@ -1,9 +1,10 @@
 import Joi from 'joi'
-import { notAbsolutePath, absolutePath, urlPart } from '../../types'
+import { notAbsolutePath, looksLikeAbsolutePath, urlPart } from '../../types'
 
 export default Joi.object({
   filename: notAbsolutePath,
-  path: absolutePath,
+  // don't check for existence here because it could be created in the build process
+  path: looksLikeAbsolutePath,
   publicPath: Joi.alternatives().try([
     urlPart,
     Joi.string().valid(''),
