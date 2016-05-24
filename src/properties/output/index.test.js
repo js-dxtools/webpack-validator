@@ -6,6 +6,8 @@ const validModuleConfigs = [
   { input: { filename: 'foo' } },
   { input: { chunkFilename: 'foo' } },
   { input: { path: 'exists' } },
+  // Does not start with ./ or ../ so it "looks like an absolute path"
+  { input: { path: 'doesnt_actually' } },
   { input: { publicPath: '/assets/' } },
   { input: { devtoolModuleFilenameTemplate: () => {} } },
   { input: { hotUpdateChunkFilename: '[id].[hash].hot-update.js' } },
