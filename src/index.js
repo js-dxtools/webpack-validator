@@ -11,7 +11,7 @@ import resolveSchemaFn from './properties/resolve'
 import outputSchema from './properties/output'
 import watchOptionsSchema from './properties/watchOptions'
 import devServerSchema from './properties/devServer'
-import { absolutePath } from './types'
+import { looksLikeAbsolutePath } from './types'
 import _merge from 'lodash/merge'
 import sh from 'shelljs'
 
@@ -37,9 +37,9 @@ const makeSchema = (schemaOptions, schemaExtension) => {
     output: outputSchema,
     plugins: pluginsSchema,
     profile: Joi.boolean(),
-    recordsInputPath: absolutePath,
-    recordsOutputPath: absolutePath,
-    recordsPath: absolutePath,
+    recordsInputPath: looksLikeAbsolutePath,
+    recordsOutputPath: looksLikeAbsolutePath,
+    recordsPath: looksLikeAbsolutePath,
     resolve: resolveSchema,
     resolveLoader: resolveSchema.concat(Joi.object({
       moduleTemplates: Joi.array().items(Joi.string()),
