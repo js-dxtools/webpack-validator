@@ -44,6 +44,7 @@ const makeSchema = (schemaOptions, schemaExtension) => {
     resolveLoader: resolveSchema.concat(Joi.object({
       moduleTemplates: Joi.array().items(Joi.string()),
     })),
+    watch: Joi.boolean(),
     watchOptions: watchOptionsSchema,
     stats: Joi.any(), // TODO
     target: Joi.any(), // TODO
