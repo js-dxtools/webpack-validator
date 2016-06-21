@@ -37,6 +37,7 @@ const makeSchema = (schemaOptions, schemaExtension) => {
     output: outputSchema,
     plugins: pluginsSchema,
     profile: Joi.boolean(),
+    progress: Joi.boolean(),
     recordsInputPath: looksLikeAbsolutePath,
     recordsOutputPath: looksLikeAbsolutePath,
     recordsPath: looksLikeAbsolutePath,
