@@ -1,4 +1,7 @@
 export function webpackConfig(script) {
+  const callsWebpackCli = script.split(' ').includes('webpack')
+  if (!callsWebpackCli) return undefined
+
   // Try to parse webpack config name. Not fool proof. Maybe
   // there's a neater way.
   const parts = script.split('--config')
