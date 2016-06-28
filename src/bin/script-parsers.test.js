@@ -27,7 +27,6 @@ describe('webpack config name parser', () => {
       'npm run clean-and-copy',
       'webpack-dev-server --env.dev --content-base dist',
       'npm run clean-and-copy',
-      'npm run clean-and-copy',
       'eslint .',
       'npm install && npm run validate',
     ]
