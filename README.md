@@ -88,7 +88,7 @@ module.exports = validate(config, {
   rules: {
     'no-root-files-node-modules-nameclash': false,
   },
-)
+})
 ```
 
 **Note**: This is not yet implemented via cli options, the default rules will apply in that case.
