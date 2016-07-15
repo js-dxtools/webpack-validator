@@ -1,11 +1,15 @@
 import Joi from 'joi'
 
 const options = [
-  'eval',
-  'cheap-eval-source-map',
   'cheap-source-map',
-  'cheap-module-eval-source-map',
+  'cheap-eval-source-map',
+  'cheap-hidden-source-map',
+  'cheap-inline-source-map',
   'cheap-module-source-map',
+  'cheap-module-eval-source-map',
+  'cheap-module-hidden-source-map',
+  'cheap-module-inline-source-map',
+  'eval',
   'eval-source-map',
   'source-map',
   'hidden-source-map',
