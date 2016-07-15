@@ -5,10 +5,12 @@ const validModuleConfigs = [
   { input: 'eval' },
   { input: '#@eval' },
   { input: '#cheap-module-eval-source-map' },
+  { input: '#cheap-module-inline-source-map' },
   { input: 'hidden-source-map' },
   { input: 'inline-source-map' },
   { input: 'eval-source-map' },
   { input: 'cheap-source-map' },
+  { input: 'hidden-source-map' },
 ]
 
 const invalidModuleConfigs = [
@@ -22,4 +24,3 @@ describe('devtool', () => {
   allValid(validModuleConfigs, schema)
   allInvalid(invalidModuleConfigs, schema)
 })
-
