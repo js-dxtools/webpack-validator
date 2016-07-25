@@ -17,7 +17,15 @@ import sh from 'shelljs'
 
 sh.config.silent = true
 
-const makeSchema = (schemaOptions, schemaExtension) => {
+const defaultSchemaOptions = {
+  rules: {
+    'no-root-files-node-modules-nameclash': true,
+    'loader-enforce-include-or-exclude': false,
+    'loader-prefer-include': false,
+  },
+}
+
+function makeSchema(schemaOptions, schemaExtension) {
   const resolveSchema = resolveSchemaFn(schemaOptions)
   const moduleSchema = moduleSchemaFn(schemaOptions)
 
@@ -59,20 +67,10 @@ const makeSchema = (schemaOptions, schemaExtension) => {
   return schemaExtension ? schema.concat(schemaExtension) : schema
 }
 
-const defaultSchemaOptions = {
-  rules: {
-    'no-root-files-node-modules-nameclash': true,
-    'loader-enforce-include-or-exclude': false,
-    'loader-prefer-include': false,
-  },
-}
-
-// Easier consumability for require (default use case for non-transpiled webpack configs)
-module.exports = function validate(config, options = {}) {
+function validate(config, options) {
   const {
     // Don't return the config object and throw on error, but just return the validation result
     returnValidation, // bool
-    quiet, // bool
     schema: overrideSchema, // Don't take internal schema, but override with this one
     schemaExtension, // Internal schema will be `Joi.concat`-ted with this schema if supplied
     rules,
@@ -92,11 +90,36 @@ module.exports = function validate(config, options = {}) {
     process.exit(1)
   }
 
+  return config
+}
+
+// Easier consumability for require (default use case for non-transpiled webpack configs)
+function validateRoot(config, options = {}) {
+  const {
+    quiet,
+  } = options
+
+  let validationResult,
+    multiValidationResults
+
+  if (Array.isArray(config)) {
+    multiValidationResults = []
+    config.forEach((cfg) => {
+      multiValidationResults.push(
+        validate(cfg, options)
+      )
+    })
+  } else {
+    validationResult = validate(config, options)
+  }
+
   if (!quiet) {
     console.info(chalk.green('[webpack-validator] Config is valid.'))
   }
 
-  return config
+  return validationResult || multiValidationResults
 }
 
-module.exports.Joi = Joi
+exports.validate = validate
+exports.validateRoot = validateRoot
+exports.Joi = Joi

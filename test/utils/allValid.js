@@ -1,6 +1,7 @@
-import validate from '../../src/index'
 import chalk from 'chalk'
 import util from 'util'
+
+const validate = require('../../src/index').validate
 
 /**
  * For all supplied configs (array of objects), check that they are valid given a schema.
