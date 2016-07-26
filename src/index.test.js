@@ -2,6 +2,7 @@ import sinon from 'sinon'
 import configs from '../test/passing-configs'
 import failingConfigs from '../test/failing-configs'
 import { validateRoot as validate, Joi } from './'
+const validatecjs = require('./')
 
 describe('.', () => {
   let sandbox
@@ -24,6 +25,25 @@ describe('.', () => {
 
       // The success message should have been printed
       assert(consoleInfoStub.callCount === 1)
+
+      // The error message should not have been printed
+      if (consoleErrorStub.callCount !== 0) {
+        throw new Error(consoleErrorStub.args[0])
+      }
+      // process.exit should not have been called
+      assert(processExitStub.callCount === 0)
+    })
+  })
+
+  configs.forEach(({ config, name }) => {
+    // This is not the multi-compiler, so we explictly pull that configuration out
+    if (name === 'webpack-multi-compiler') return
+
+    it(`validates ${name} using CJS`, () => {
+      validatecjs(config)
+
+      // The success message should have been printed
+      assert(consoleInfoStub.callCount === 0)
 
       // The error message should not have been printed
       if (consoleErrorStub.callCount !== 0) {
