@@ -93,6 +93,8 @@ function validate(config, options) {
   return config
 }
 
+module.exports = validate
+
 // Easier consumability for require (default use case for non-transpiled webpack configs)
 function validateRoot(config, options = {}) {
   const {
@@ -120,6 +122,5 @@ function validateRoot(config, options = {}) {
   return validationResult || multiValidationResults
 }
 
-exports.validate = validate
-exports.validateRoot = validateRoot
-exports.Joi = Joi
+module.exports.validateRoot = validateRoot
+module.exports.Joi = Joi

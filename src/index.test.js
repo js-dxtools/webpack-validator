@@ -1,9 +1,7 @@
 import sinon from 'sinon'
 import configs from '../test/passing-configs'
 import failingConfigs from '../test/failing-configs'
-import { Joi } from './'
-
-const validate = require('./index').validateRoot
+import { validateRoot as validate, Joi } from './'
 
 describe('.', () => {
   let sandbox
