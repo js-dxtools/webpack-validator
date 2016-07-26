@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 import util from 'util'
-import { validate } from '../../src'
+import validate from '../../src'
 
 /**
  * For all supplied configs (array of objects), check that they are valid given a schema.

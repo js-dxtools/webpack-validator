@@ -1,5 +1,5 @@
 const path = require('path')
-const validate = require('../index').validateRoot
+const validate = require('../').validateRoot
 const argv = require('yargs').argv
 
 module.exports = function validateConfig(webpackConfigFile, quiet) {
