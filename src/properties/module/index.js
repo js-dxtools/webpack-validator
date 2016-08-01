@@ -40,7 +40,13 @@ const loaderSchemaFn = ({ rules }) => {
     include: conditionSchema,
     loader: Joi.string(),
     query: Joi.object(),
-    loaders: Joi.array().items(Joi.string()),
+    loaders: Joi.array().items(
+      Joi.string(),
+      Joi.object({
+        loader: Joi.string().required(),
+        query: Joi.object(),
+      })
+    ),
   })
     .xor('loaders', 'loader')
     .nand('loaders', 'query')
