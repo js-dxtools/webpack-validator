@@ -51,6 +51,17 @@ const validModuleConfigs = [
     },
     schema: schemaFn({ rules: { 'loader-prefer-include': true } }),
   },
+  {
+    // should allow mix of objects and strings in `loaders` array
+    input: {
+      loaders: [
+        {
+          test: /foo/,
+          loaders: ['style-loader', { loader: 'file-loader' }],
+        },
+      ],
+    },
+  },
 ]
 
 const invalidModuleConfigs = [
@@ -84,7 +95,10 @@ const invalidModuleConfigs = [
         { test: /\.less$/, loaders: [1, 2] },
       ],
     },
-    error: { message: '"0" must be a string', path: 'loaders.0.loaders.0' },
+    error: {
+      message: '"loaders" at position 0 does not match any of the allowed types',
+      path: 'loaders.0.loaders.0',
+    },
   },
   {
     input: {
@@ -151,6 +165,37 @@ const invalidModuleConfigs = [
       loaders: [{ test: /foo/, loader: 'foo' }],
     },
     schema: schemaFn({ rules: { 'loader-enforce-include-or-exclude': true } }),
+  },
+  {
+    // should enforce `loader` property, if object is found in `loaders` array
+    input: {
+      loaders: [{
+        test: /foo/,
+        loaders: [
+          { query: { foo: 'bar' } },
+        ],
+      }],
+    },
+    error: {
+      message: '"loaders" at position 0 does not match any of the allowed types',
+      path: 'loaders.0.loaders.0',
+    },
+  },
+  {
+    // should disallow properties, other than `loader` and `query`
+    // in objects inside the `loaders` array
+    input: {
+      loaders: [{
+        test: /foo/,
+        loaders: [
+          { loader: 'foo', query: { foo: 'bar' }, include: /foo/ },
+        ],
+      }],
+    },
+    error: {
+      message: '"loaders" at position 0 does not match any of the allowed types',
+      path: 'loaders.0.loaders.0',
+    },
   },
 ]
 
