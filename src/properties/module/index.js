@@ -27,6 +27,12 @@ const LOADER_EXCLUDE_FORBIDDEN = oneLine`
   which might inadvertently slow your build down. Use \`include\` instead. (loader-prefer-include)
 `
 
+const LOADER_IN_LOADERS_MESSAGE = oneLine`
+  at position {{pos}} must be a String or an Object with properties:
+  "loader": (String, required),
+  "query": (Object, optional)
+`
+
 const conditionSchema = Joi.array().items([
   Joi.string(),
   Joi.object().type(RegExp),
@@ -46,7 +52,13 @@ const loaderSchemaFn = ({ rules }) => {
         loader: Joi.string().required(),
         query: Joi.object(),
       })
-    ),
+    ).options({
+      language: {
+        array: {
+          includes: LOADER_IN_LOADERS_MESSAGE,
+        },
+      },
+    }),
   })
     .xor('loaders', 'loader')
     .nand('loaders', 'query')
