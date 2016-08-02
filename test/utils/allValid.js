@@ -7,13 +7,14 @@ import validate from '../../src'
  */
 export default (configs, schema) => {
   configs.forEach((input) => {
-    const { input: validConfig, schema: schemaOverride } = input
-    if (!validConfig) {
+    if (!Object.prototype.hasOwnProperty.call(input, 'input')) {
       throw new Error(
         'Please supply the valid config object like `{ input: <valid-config-object> }`.' +
         `You passed ${JSON.stringify(input)}`
       )
     }
+
+    const { input: validConfig, schema: schemaOverride } = input
 
     it(`: ${chalk.gray(util.inspect(validConfig, false, null))} should be valid`, () => {
       const result = validate(validConfig, {

@@ -11,6 +11,7 @@ const validModuleConfigs = [
   { input: 'eval-source-map' },
   { input: 'cheap-source-map' },
   { input: 'hidden-source-map' },
+  { input: false },
 ]
 
 const invalidModuleConfigs = [
@@ -18,6 +19,8 @@ const invalidModuleConfigs = [
   { input: 'eval-source-map-foo', error: { } },
   { input: 'foo-cheap-source-map', error: { } },
   { input: '#@eval-foo', error: { } },
+  { input: 'false', error: { } },
+  { input: true, error: { } },
 ]
 
 describe('devtool', () => {

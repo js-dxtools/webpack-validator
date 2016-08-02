@@ -22,6 +22,7 @@ const DEVTOOL_REGEX = new RegExp(
   `(${options.join('$|')})` // one of the options
 )
 
-export default Joi
-  .string()
-  .regex(DEVTOOL_REGEX)
+export default [
+  Joi.string().regex(DEVTOOL_REGEX),
+  Joi.any().valid(false),
+]
