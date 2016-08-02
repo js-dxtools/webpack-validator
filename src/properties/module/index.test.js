@@ -1,4 +1,8 @@
-import schemaFn, { CONDITION_MESSAGE, LOADERS_QUERY_MESSAGE } from './index'
+import schemaFn, {
+  CONDITION_MESSAGE,
+  LOADERS_QUERY_MESSAGE,
+  LOADER_IN_LOADERS_MESSAGE,
+} from './index'
 import { allValid, allInvalid } from '../../../test/utils'
 
 const validModuleConfigs = [
@@ -96,7 +100,7 @@ const invalidModuleConfigs = [
       ],
     },
     error: {
-      message: '"loaders" at position 0 does not match any of the allowed types',
+      message: LOADER_IN_LOADERS_MESSAGE,
       path: 'loaders.0.loaders.0',
     },
   },
@@ -177,7 +181,7 @@ const invalidModuleConfigs = [
       }],
     },
     error: {
-      message: '"loaders" at position 0 does not match any of the allowed types',
+      message: LOADER_IN_LOADERS_MESSAGE,
       path: 'loaders.0.loaders.0',
     },
   },
@@ -193,7 +197,7 @@ const invalidModuleConfigs = [
       }],
     },
     error: {
-      message: '"loaders" at position 0 does not match any of the allowed types',
+      message: LOADER_IN_LOADERS_MESSAGE,
       path: 'loaders.0.loaders.0',
     },
   },
