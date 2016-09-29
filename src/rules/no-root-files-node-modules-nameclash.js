@@ -54,6 +54,7 @@ const customJoi = Joi.extend({
         // For an initial iteration this node_module resolving is quite simplistic;
         // it just takes the first node_module folder found looking upwards from the given root
         const nodeModuleFolder = findNodeModules({ cwd: path_, relative: false })[0]
+        /* istanbul ignore if - it's hard to simulate this */
         if (!nodeModuleFolder) {
           return null
         }
