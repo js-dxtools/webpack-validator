@@ -10,9 +10,12 @@ export default Joi.object({
   info: Joi.boolean(),
   quiet: Joi.boolean(),
   https: Joi.boolean(),
-  key: Joi.string(),
-  cert: Joi.string(),
-  cacert: Joi.string(),
+  key: Joi.binary(),
+  cert: Joi.binary(),
+  ca: [
+    Joi.binary(),
+    Joi.array().items(Joi.binary()),
+  ],
   contentBase: [
     Joi.object(),
     Joi.array(),
