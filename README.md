@@ -17,6 +17,8 @@ Writing webpack configs is brittle and error-prone. This package provides a [joi
 
 You're very welcome to give [feedback](https://github.com/js-dxtools/webpack-validator/issues) & [PR's](https://github.com/js-dxtools/webpack-validator).
 
+**Note that as of webpack v2 (currently in beta), configuration validation is baked in.**
+
 ### Example
 Take this simple webpack config. It has a tiny, hard to spot error. Can you find it?
 ```js
