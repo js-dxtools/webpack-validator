@@ -50,11 +50,18 @@ There are two ways to use webpack-validator: a) "programmatically" by wrapping y
 
 For the first approach, add this in your `webpack.config.js`:
 ```js
-const validate = require('webpack-validator')
+const validate = require('webpack-validator');
 
-module.exports = validate({ /* ... your webpack config */ })
+module.exports = validate({ /* ... your webpack config */ });
 ```
 Now run webpack. Either everything is green and the build continues or `joi` will let you know what's wrong and the build won't continue.
+
+If your webpack config is an array of configs instead of a single object, the above doesn't quite work. Add this in your `webpack.config.js` instead:
+```js
+const validate = require('webpack-validator').validateRoot;
+
+module.exports = validate({ /* ... your webpack config */ });
+```
 
 #### CLI
 For CLI usage you probably want to install the tool globally (`npm install -g webpack-validator`) first. Then just run `webpack-validator <your-config>`.
