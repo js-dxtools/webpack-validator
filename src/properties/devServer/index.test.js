@@ -42,8 +42,8 @@ const validModuleConfigs = [
   { input: { proxy: [] } },
   { input: { staticOptions: {} } },
   { input: { headers: {} } },
-  { input: { localAddress: "1.2.3.4:30"} },
-  { input: { logLevel: "debug"} },
+  { input: { localAddress: '1.2.3.4:30' } },
+  { input: { logLevel: 'debug' } },
 ]
 
 const invalidModuleConfigs = [
@@ -53,12 +53,11 @@ const invalidModuleConfigs = [
   { input: { stats: true } },
   { input: { stats: 'foobar' } },
   { input: { proxy: true } },
-  { input: { localAddress: '1.2.3.4'} },
-  { input: { logLevel: 'insane'} },
+  { input: { localAddress: '1.2.3.4' } },
+  { input: { logLevel: 'insane' } },
 ]
 
 describe('devServer', () => {
   allValid(validModuleConfigs, schema)
   allInvalid(invalidModuleConfigs, schema)
 })
-
