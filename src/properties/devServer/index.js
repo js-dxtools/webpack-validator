@@ -38,6 +38,8 @@ export default Joi.object({
     Joi.object(),
     Joi.string().valid(['none', 'errors-only', 'minimal', 'normal', 'verbose']),
   ]),
+  logLevel: Joi.string().valid(['debug', 'info', 'warn', 'error', 'silent']),
+  localAddress: Joi.string().regex('.*:[0-9]+'),
   noInfo: Joi.boolean(),
   proxy: [
     Joi.object(),
