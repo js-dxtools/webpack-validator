@@ -46,6 +46,7 @@ export default Joi.object({
     Joi.array(),
     Joi.string(),
   ],
+  setup: Joi.func().arity(1),
   staticOptions: Joi.object(),
   headers: Joi.object(),
 })
