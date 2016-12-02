@@ -40,6 +40,7 @@ const validModuleConfigs = [
   { input: { noInfo: true } },
   { input: { proxy: {} } },
   { input: { proxy: [] } },
+  { input: { setup: (a) => {} } }, // eslint-disable-line
   { input: { staticOptions: {} } },
   { input: { headers: {} } },
   { input: { localAddress: '1.2.3.4:30' } },
@@ -53,6 +54,7 @@ const invalidModuleConfigs = [
   { input: { stats: true } },
   { input: { stats: 'foobar' } },
   { input: { proxy: true } },
+  { input: { setup: (a, b) => {} } }, // eslint-disable-line
   { input: { localAddress: '1.2.3.4' } },
   { input: { logLevel: 'insane' } },
 ]
