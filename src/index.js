@@ -11,6 +11,7 @@ import resolveSchemaFn from './properties/resolve'
 import outputSchema from './properties/output'
 import watchOptionsSchema from './properties/watchOptions'
 import devServerSchema from './properties/devServer'
+import performanceSchema from './properties/performance'
 import { looksLikeAbsolutePath } from './types'
 import _merge from 'lodash/merge'
 import sh from 'shelljs'
@@ -55,6 +56,7 @@ function makeSchema(schemaOptions, schemaExtension) {
     })),
     watch: Joi.boolean(),
     watchOptions: watchOptionsSchema,
+    performance: performanceSchema,
     stats: Joi.any(), // TODO
     target: Joi.any(), // TODO
 
