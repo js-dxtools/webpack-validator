@@ -1,3 +1,4 @@
+import path from 'path'
 import sinon from 'sinon'
 import configs from '../test/passing-configs'
 import failingConfigs from '../test/failing-configs'
@@ -64,6 +65,35 @@ describe('.', () => {
       assert(processExitStub.callCount === 1)
     })
   })
+
+  describe('version-validation', () => {
+    const cwd = process.cwd()
+
+    afterEach(() => {
+      process.chdir(cwd)
+    })
+
+    it('throws when the project is using webpack 2', () => {
+      const dir = path.resolve('./test/version-validation/fail')
+      process.chdir(dir)
+      try {
+        validate({ entry: './here.js', output: { filename: 'bundle.js' } })
+        throw new Error(`validate should throw when cwd is: ${dir}`)
+      } catch (error) {
+        if (error.message.indexOf('version 2') === -1) {
+          throw error
+        }
+      }
+    })
+
+    it('does not throw when the project is using webpack 1', () => {
+      const dir = path.resolve('./test/version-validation/pass')
+      process.chdir(dir)
+      // validate should not throw an error...
+      validate({ entry: './here.js', output: { filename: 'bundle.js' } })
+    })
+  })
+
 
   it('should allow console output to be muted', () => {
     validate({}, { quiet: true })

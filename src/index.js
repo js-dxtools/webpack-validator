@@ -1,3 +1,4 @@
+import path from 'path'
 import Joi from 'joi'
 import chalk from 'chalk'
 import moduleSchemaFn from './properties/module'
@@ -15,6 +16,7 @@ import performanceSchema from './properties/performance'
 import { looksLikeAbsolutePath } from './types'
 import _merge from 'lodash/merge'
 import sh from 'shelljs'
+import semver from 'semver'
 
 sh.config.silent = true
 
@@ -69,6 +71,26 @@ function makeSchema(schemaOptions, schemaExtension) {
   return schemaExtension ? schema.concat(schemaExtension) : schema
 }
 
+function throwForWebpack2() {
+  const cwd = process.cwd()
+  let satisifies = true
+  try {
+    const webpackPackagePath = path.join(cwd, 'node_modules', 'webpack', 'package.json')
+    const { version } = require(webpackPackagePath)
+    satisifies = semver.satisfies(version, '^1.x')
+  } catch (error) {
+    // ignore...
+  }
+  if (!satisifies) {
+    throw new Error(
+      'It looks like you\'re using version 2 or greater of webpack. ' +
+      'The official release of 2 of webpack was released with built-in validation. ' +
+      'So webpack-validator does not support that version. ' +
+      'Please uninstall webpack-validator and remove it from your project!'
+    )
+  }
+}
+
 function validate(config, options = {}) {
   const {
     // Don't return the config object and throw on error, but just return the validation result
@@ -77,6 +99,7 @@ function validate(config, options = {}) {
     schemaExtension, // Internal schema will be `Joi.concat`-ted with this schema if supplied
     rules,
   } = options
+  throwForWebpack2()
 
   const schemaOptions = _merge(defaultSchemaOptions, { rules })
 
