@@ -59,8 +59,21 @@ const loaderSchemaFn = ({ rules }) => {
         },
       },
     }),
+    use: Joi.array().items(
+      Joi.string(),
+      Joi.object({
+        loader: Joi.string().required(),
+        options: Joi.object(),
+      })
+    ).options({
+      language: {
+        array: {
+          includes: LOADER_IN_LOADERS_MESSAGE,
+        },
+      },
+    }),
   })
-    .xor('loaders', 'loader')
+    .xor('loaders', 'loader', 'use')
     .nand('loaders', 'query')
     .options({ language: { object: { nand: LOADERS_QUERY_MESSAGE } } })
 
@@ -96,9 +109,10 @@ export default (options) => {
   const loaderSchema = loaderSchemaFn(options)
   const loadersSchema = Joi.array().items(loaderSchema)
   return Joi.object({
-    loaders: loadersSchema.required(),
+    loaders: loadersSchema,
+    rules: loadersSchema,
     preLoaders: loadersSchema,
     postLoaders: loadersSchema,
     noParse: Joi.array(Joi.object().type(RegExp)).single(),
-  })
+  }).xor('loaders', 'rules')
 }

@@ -66,9 +66,72 @@ const validModuleConfigs = [
       ],
     },
   },
+  {
+    input: {
+      rules: [
+        { test: 'foo', include: /src/, loader: 'babel' },
+      ],
+    },
+  },
+  {
+    input: {
+      rules: [
+        { test: /\.less$/, loader: 'style-loader!css-loader!autoprefixer-loader!less-loader' },
+      ],
+    },
+  },
+  {
+    input: {
+      rules: [
+        { test: /\.(?:eot|ttf|woff2?)$/, use: ['file-loader'] },
+      ],
+    },
+  },
+  {
+    // should allow both `include` and `exclude with the rule 'loader-enforce-include-or-exclude'
+    input: {
+      rules: [{ test: /foo/, loader: 'foo', include: 'foo', exclude: 'bar' }],
+    },
+    schema: schemaFn({ rules: { 'loader-enforce-include-or-exclude': true } }),
+  },
+  {
+    // should be fine with `include` with rule 'loader-enforce-include-or-exclude'
+    input: {
+      rules: [{ test: /foo/, loader: 'foo', include: 'foo' }],
+    },
+    schema: schemaFn({ rules: { 'loader-prefer-include': true } }),
+  },
+  {
+    // should allow mix of objects and strings in `loaders` array
+    input: {
+      rules: [
+        {
+          test: /foo/,
+          use: ['style-loader', { loader: 'file-loader' }],
+        },
+      ],
+    },
+  },
+  {
+    input: {
+      rules: [
+        {
+          test: /\.css$/,
+          use: [
+            { loader: 'style-loader' },
+            { loader: 'css-loader', options: { modules: true } },
+          ],
+        },
+      ],
+    },
+  },
 ]
 
 const invalidModuleConfigs = [
+  {
+    input: {},
+    error: { message: '"value" must contain at least one of [loaders, rules]' },
+  },
   {
     input: {
       loaders: [
@@ -96,6 +159,14 @@ const invalidModuleConfigs = [
   {
     input: {
       loaders: [
+        { test: /\.less$/, use: 'style-loader!css-loader!autoprefixer-loader!less-loader' },
+      ],
+    },
+    error: { message: '"use" must be an array' },
+  },
+  {
+    input: {
+      loaders: [
         { test: /\.less$/, loaders: [1, 2] },
       ],
     },
@@ -114,7 +185,9 @@ const invalidModuleConfigs = [
     input: {
       loaders: [{ test: /\.(?:eot|ttf|woff2?)$/, loaders: ['file-loader'], loader: 'style' }],
     },
-    error: { message: '"value" contains a conflict between exclusive peers [loaders, loader]' },
+    error: {
+      message: '"value" contains a conflict between exclusive peers [loaders, loader, use]',
+    },
   },
   {
     input: {
@@ -134,7 +207,7 @@ const invalidModuleConfigs = [
     input: {
       loaders: [{ test: /foo/ }],
     },
-    error: { message: '"value" must contain at least one of [loaders, loader]' },
+    error: { message: '"value" must contain at least one of [loaders, loader, use]' },
   },
   {
     input: {
