@@ -1,6 +1,8 @@
 # webpack-validator
 
- > Validate your webpack configs with joi
+> Validate your webpack configs with joi
+ 
+# Note: webpack v2 has built-in validation for configuration (you don't have to do anything, it just works). Due to this, `webpack-validator` is unlikely to make significant changes. While pull requests will be reviewed and can be merged (for webpack v1 support), project maintainers are unlikely to put a lot of much effort into the maintenance of the project.
 
 [![travis build](https://img.shields.io/travis/js-dxtools/webpack-validator.svg?style=flat-square)](https://travis-ci.org/js-dxtools/webpack-validator)
 [![codecov.io](https://img.shields.io/codecov/c/github/js-dxtools/webpack-validator.svg?style=flat-square)](https://codecov.io/github/js-dxtools/webpack-validator?branch=master)
@@ -16,8 +18,6 @@
 Writing webpack configs is brittle and error-prone. This package provides a [joi](https://github.com/hapijs/joi) object schema for webpack configs. This gets you a) static type safety, b) property spell checking and c) semantic validations such as "`loader` and `loaders` can not be used simultaneously" or "`query` can only be used with `loader`, not with `loaders`".
 
 You're very welcome to give [feedback](https://github.com/js-dxtools/webpack-validator/issues) & [PR's](https://github.com/js-dxtools/webpack-validator).
-
-**Note: webpack v2 has built-in validation for configuration. Due to this, `webpack-validator` is unlikely to make significant changes. While pull requests will be reviewed and can be merged, project maintainers are unlikely to put a lot of much effort into the maintenance of the project.**
 
 ### Example
 Take this simple webpack config. It has a tiny, hard to spot error. Can you find it?
